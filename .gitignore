@@ -9,3 +9,6 @@ dist-ssr/
 *.log
 .superpowers/
 coverage/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
