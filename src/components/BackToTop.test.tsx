@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { BackToTop } from './BackToTop';
 
@@ -19,7 +19,9 @@ describe('BackToTop', () => {
     Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
     render(<BackToTop />);
     Object.defineProperty(window, 'scrollY', { value: 600, configurable: true });
-    window.dispatchEvent(new Event('scroll'));
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
     const link = screen.getByRole('link', { name: /back to top/i });
     expect(link).toHaveAttribute('href', '#top');
   });

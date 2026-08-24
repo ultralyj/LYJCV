@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
 
 export function BackToTop() {
-  const [visible, setVisible] = useState(
-    () => typeof window !== 'undefined' && window.scrollY > window.innerHeight,
-  );
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () =>
-      flushSync(() => setVisible(window.scrollY > window.innerHeight));
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
