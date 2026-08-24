@@ -52,6 +52,7 @@ export function Publications({ publications, ownName }: PublicationsProps) {
     if (value === SELECTED) {
       setSelectedOnly((prev) => !prev);
     } else {
+      setSelectedOnly(false);
       setActiveTag(value);
     }
   };

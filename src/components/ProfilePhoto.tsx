@@ -11,12 +11,18 @@ export function ProfilePhoto({ photos, alt }: ProfilePhotoProps) {
   const current = photos[index % photos.length];
 
   return (
-    <img
-      src={current}
-      alt={alt}
-      loading="lazy"
+    <button
+      type="button"
+      aria-label="Rotate profile photo"
       onClick={() => setIndex((i) => (i + 1) % photos.length)}
-      className="h-48 w-40 cursor-pointer rounded-md object-cover shadow-sm transition hover:opacity-90"
-    />
+      className="cursor-pointer rounded-md transition hover:opacity-90"
+    >
+      <img
+        src={current}
+        alt={alt}
+        loading="lazy"
+        className="h-48 w-40 rounded-md object-cover shadow-sm"
+      />
+    </button>
   );
 }

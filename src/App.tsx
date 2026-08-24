@@ -31,9 +31,9 @@ export default function App() {
         customSections={customSections}
       />
       <main className="mx-auto max-w-3xl px-4 py-8">
-        <div id="about">
+        <header id="about" className="scroll-mt-20">
           <Bio profile={profile} />
-        </div>
+        </header>
         <News items={news} />
         <Publications publications={publications} ownName={profile.nameEn} />
         <Projects projects={projects} />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ContactLink } from '../types';
 import { Modal } from './Modal';
 
@@ -20,12 +20,20 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
   const [wechatOpen, setWechatOpen] = useState(false);
   const [wechatQr, setWechatQr] = useState<string | undefined>();
   const [copied, setCopied] = useState(false);
+  const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimer.current) clearTimeout(copyTimer.current);
+    };
+  }, []);
 
   const handleEmail = async (address: string) => {
     try {
       await navigator.clipboard.writeText(address);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      if (copyTimer.current) clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(() => setCopied(false), 1500);
     } catch {
       window.location.href = `mailto:${address}`;
     }

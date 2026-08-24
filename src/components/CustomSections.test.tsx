@@ -59,4 +59,19 @@ describe('CustomSections', () => {
     render(<CustomSections sections={sections} />);
     expect(screen.getByText('A paragraph of text.')).toBeInTheDocument();
   });
+
+  it('renders links in list layout when href is provided', () => {
+    const sectionsWithLinks: CustomSection[] = [
+      {
+        id: 'links',
+        title: 'Links',
+        layout: 'list',
+        items: [{ title: 'My repo', href: 'https://github.com/x', description: 'code' }],
+      },
+    ];
+    render(<CustomSections sections={sectionsWithLinks} />);
+    const link = screen.getByRole('link', { name: 'My repo' });
+    expect(link).toHaveAttribute('href', 'https://github.com/x');
+    expect(screen.getByText('code')).toBeInTheDocument();
+  });
 });

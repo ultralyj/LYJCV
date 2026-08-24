@@ -35,6 +35,15 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
+  it('focuses the close button when opened', () => {
+    render(
+      <Modal open onClose={vi.fn()} title="Test">
+        <p>content</p>
+      </Modal>,
+    );
+    expect(screen.getByRole('button', { name: /close dialog/i })).toHaveFocus();
+  });
+
   it('renders nothing when closed', () => {
     const { container } = render(
       <Modal open={false} onClose={vi.fn()} title="Test">

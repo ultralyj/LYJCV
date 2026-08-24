@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { CustomSection } from '../types';
 import { Section } from './Section';
 
@@ -66,13 +67,44 @@ function CardLayout({ items }: { items: CustomSection['items'] }) {
 function ListLayout({ items }: { items: CustomSection['items'] }) {
   return (
     <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">
-      {items.map((item, i) => (
-        <li key={i}>
-          {item.title && <span className="font-medium">{item.title}</span>}
-          {item.title && item.description && ' — '}
-          {item.description && <span>{item.description}</span>}
-        </li>
-      ))}
+      {items.map((item, i) => {
+        const isExternal = item.href?.startsWith('http');
+        const linkProps = item.href
+          ? {
+              href: item.href,
+              target: isExternal ? ('_blank' as const) : undefined,
+              rel: isExternal ? 'noopener noreferrer' : undefined,
+            }
+          : null;
+        let titleNode: ReactNode = null;
+        if (item.title) {
+          titleNode = linkProps ? (
+            <a {...linkProps} className="font-medium text-accent hover:underline dark:text-accent-dark">
+              {item.title}
+            </a>
+          ) : (
+            <span className="font-medium">{item.title}</span>
+          );
+        }
+        let descriptionNode: React.ReactNode = null;
+        if (item.description) {
+          descriptionNode =
+            !item.title && linkProps ? (
+              <a {...linkProps} className="text-accent hover:underline dark:text-accent-dark">
+                {item.description}
+              </a>
+            ) : (
+              <span>{item.description}</span>
+            );
+        }
+        return (
+          <li key={i}>
+            {titleNode}
+            {item.title && item.description && ' — '}
+            {descriptionNode}
+          </li>
+        );
+      })}
     </ul>
   );
 }

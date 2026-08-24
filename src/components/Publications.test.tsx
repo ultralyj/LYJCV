@@ -35,6 +35,17 @@ describe('Publications', () => {
     expect(screen.queryByText('Manipulation Paper')).not.toBeInTheDocument();
   });
 
+  it('clears the selected filter when a tag is clicked after Selected', async () => {
+    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
+    // First show only selected
+    await userEvent.click(screen.getByRole('button', { name: /Selected/ }));
+    expect(screen.getByText('Tactile Grasping Paper')).toBeInTheDocument();
+    // Then click a tag — should show papers with that tag, regardless of selected
+    await userEvent.click(screen.getByRole('button', { name: /Manipulation/ }));
+    expect(screen.getByText('Manipulation Paper')).toBeInTheDocument();
+    expect(screen.queryByText('Tactile Grasping Paper')).not.toBeInTheDocument();
+  });
+
   it('shows a visible count', () => {
     render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
     expect(screen.getByText(/Showing 3 of 3/)).toBeInTheDocument();
