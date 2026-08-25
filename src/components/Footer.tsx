@@ -5,12 +5,35 @@ interface FooterProps {
 export function Footer({ name }: FooterProps) {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-slate-200 py-6 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
-      <span>© {year} {name}</span>
-      <span className="mx-2">·</span>
-      <a href="#top" className="hover:text-accent dark:hover:text-accent-dark">
-        Back to top ↑
-      </a>
+    <footer className="site-footer">
+      <div className="site-footer-row">
+        <div className="site-footer-col site-footer-col-left">
+          © {year} {name}
+        </div>
+        <div className="site-footer-col site-footer-col-center">
+          <a
+            href="#top"
+            className="footer-top-link"
+            aria-label="Back to top"
+            title="Back to top"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="6 15 12 9 18 15" />
+            </svg>
+            <span>Back to top</span>
+          </a>
+        </div>
+        <div className="site-footer-col site-footer-col-right">
+          Built on{' '}
+          <a
+            href="https://github.com/jonbarron/jonbarron_website"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            this template
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }

@@ -3,9 +3,19 @@ import { describe, expect, it } from 'vitest';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
-  it('renders the name and a back-to-top link', () => {
-    render(<Footer name="Jane Doe" />);
-    expect(screen.getByText(/©/)).toHaveTextContent('Jane Doe');
-    expect(screen.getByRole('link', { name: /back to top/i })).toHaveAttribute('href', '#top');
+  it('renders copyright, back-to-top pill, and template credit', () => {
+    render(<Footer name="Your Name" />);
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveClass('site-footer');
+    expect(footer.textContent).toMatch(/©\s*\d{4}\s*Your Name/);
+    const top = screen.getByRole('link', { name: /back to top/i });
+    expect(top).toHaveAttribute('href', '#top');
+    expect(top).toHaveClass('footer-top-link');
+    expect(
+      screen.getByRole('link', { name: /this template/i }),
+    ).toHaveAttribute(
+      'href',
+      'https://github.com/jonbarron/jonbarron_website',
+    );
   });
 });
