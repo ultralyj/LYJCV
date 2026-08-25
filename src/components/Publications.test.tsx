@@ -2,52 +2,52 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { Publications } from './Publications';
-import { publicationsFixture } from '../test/fixtures';
+import { publications } from '../data/publications';
 
 describe('Publications', () => {
-  it('renders the section title and all publications initially', () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    expect(screen.getByRole('heading', { name: 'Publications' })).toBeInTheDocument();
-    expect(screen.getByText('Tactile Grasping Paper')).toBeInTheDocument();
-    expect(screen.getByText('Manipulation Paper')).toBeInTheDocument();
-    expect(screen.getByText('Other Paper')).toBeInTheDocument();
+  it('renders the heading with total count, legend and all papers', () => {
+    render(<Publications publications={publications} />);
+    expect(screen.getByText('Publications')).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('total publications'),
+    ).toHaveTextContent(String(publications.length));
+    expect(
+      screen.getByText(/denotes equal contribution/i),
+    ).toBeInTheDocument();
+    publications.forEach((p) => {
+      expect(screen.getByText(p.title)).toBeInTheDocument();
+    });
   });
 
-  it('aggregates tags with counts including All', () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    expect(screen.getByRole('button', { name: /All \(3\)/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Tactile \(1\)/ })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Manipulation \(1\)/ })).toBeInTheDocument();
+  it('filters by the Selected topic', async () => {
+    render(<Publications publications={publications} />);
+    await userEvent.click(
+      screen.getByRole('button', { name: /selected/i }),
+    );
+    const selectedTitles = publications
+      .filter((p) => p.selected)
+      .map((p) => p.title);
+    const otherTitles = publications
+      .filter((p) => !p.selected)
+      .map((p) => p.title);
+    selectedTitles.forEach((t) =>
+      expect(screen.getByText(t)).toBeInTheDocument(),
+    );
+    otherTitles.forEach((t) =>
+      expect(screen.queryByText(t)).not.toBeInTheDocument(),
+    );
   });
 
-  it('filters publications by tag', async () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    await userEvent.click(screen.getByRole('button', { name: /Tactile/ }));
-    expect(screen.getByText('Tactile Grasping Paper')).toBeInTheDocument();
-    expect(screen.queryByText('Manipulation Paper')).not.toBeInTheDocument();
-    expect(screen.queryByText('Other Paper')).not.toBeInTheDocument();
-  });
-
-  it('filters to selected publications when ★ Selected is toggled', async () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    await userEvent.click(screen.getByRole('button', { name: /Selected/ }));
-    expect(screen.getByText('Tactile Grasping Paper')).toBeInTheDocument();
-    expect(screen.queryByText('Manipulation Paper')).not.toBeInTheDocument();
-  });
-
-  it('clears the selected filter when a tag is clicked after Selected', async () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    // First show only selected
-    await userEvent.click(screen.getByRole('button', { name: /Selected/ }));
-    expect(screen.getByText('Tactile Grasping Paper')).toBeInTheDocument();
-    // Then click a tag — should show papers with that tag, regardless of selected
-    await userEvent.click(screen.getByRole('button', { name: /Manipulation/ }));
-    expect(screen.getByText('Manipulation Paper')).toBeInTheDocument();
-    expect(screen.queryByText('Tactile Grasping Paper')).not.toBeInTheDocument();
-  });
-
-  it('shows a visible count', () => {
-    render(<Publications publications={publicationsFixture} ownName="Jane Doe" />);
-    expect(screen.getByText(/Showing 3 of 3/)).toBeInTheDocument();
+  it('filters by a tag category label', async () => {
+    render(<Publications publications={publications} />);
+    await userEvent.click(
+      screen.getByRole('button', { name: /grasping/i }),
+    );
+    expect(
+      screen.getByText('Example Grasping Paper'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Example Tactile Manipulation Paper'),
+    ).not.toBeInTheDocument();
   });
 });
