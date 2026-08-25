@@ -4,15 +4,28 @@ interface SectionProps {
   id: string;
   title: string;
   children: ReactNode;
+  /** Render the heading inside a gradient "head" row (used by tables). */
+  head?: boolean;
 }
 
-export function Section({ id, title, children }: SectionProps) {
+export function Section({ id, title, children, head = false }: SectionProps) {
   return (
-    <section id={id} className="mb-10 scroll-mt-20">
-      <h2 className="mb-4 border-b border-slate-200 pb-2 text-2xl font-semibold dark:border-slate-700">
-        {title}
-      </h2>
-      {children}
+    <section id={id} aria-labelledby={`${id}-heading`} className="site-section">
+      {head ? (
+        <div className="site-section-head">
+          <h2 id={`${id}-heading`} className="section-heading">
+            {title}
+          </h2>
+          {children}
+        </div>
+      ) : (
+        <div className="site-section-body">
+          <h2 id={`${id}-heading`} className="section-heading">
+            {title}
+          </h2>
+          {children}
+        </div>
+      )}
     </section>
   );
 }
