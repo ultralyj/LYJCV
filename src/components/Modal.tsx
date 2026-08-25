@@ -30,7 +30,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
       role="presentation"
     >
       <div
-        className="relative max-w-md rounded-lg bg-white p-6 shadow-xl dark:bg-slate-800"
+        className="relative max-w-md rounded-lg border border-[var(--border)] bg-[var(--card)] p-6 text-[var(--ink-body)] shadow-xl"
         role="dialog"
         aria-modal="true"
         aria-label={title}
