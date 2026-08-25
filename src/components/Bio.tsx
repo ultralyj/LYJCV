@@ -11,10 +11,10 @@ export function Bio({ profile }: BioProps) {
     <div className="profile-hero">
       <div className="profile-hero-row">
         <div className="profile-text-col">
-          <p className="profile-name-row">
+          <h1 className="profile-name-row">
             <span className="name-en">{profile.nameEn}</span>{' '}
             <span className="name-cn">{profile.nameZh}</span>
-          </p>
+          </h1>
           <p className="profile-intro">{profile.bio}</p>
         </div>
         <ProfilePhoto photos={profile.photos} alt={profile.nameEn} />

@@ -15,5 +15,11 @@ describe('Bio', () => {
       screen.getByRole('button', { name: /rotate profile photo/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Email' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+        name: `${profile.nameEn} ${profile.nameZh}`,
+      }),
+    ).toHaveClass('profile-name-row');
   });
 });

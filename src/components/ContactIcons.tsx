@@ -33,7 +33,7 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
   };
 
   return (
-    <p className="profile-links">
+    <div className="profile-links">
       {contacts.map((c) => {
         if (c.type === 'email') {
           return (
@@ -117,6 +117,6 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
           Scan to add me on WeChat
         </p>
       </Modal>
-    </p>
+    </div>
   );
 }
