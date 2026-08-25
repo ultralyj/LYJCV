@@ -453,4 +453,99 @@ html[data-theme='dark'] .profile-photo-button:hover .profile-photo {
   color: var(--accent);
 }
 
+/* ==========================================================================
+   Profile hero
+   ========================================================================== */
+.profile-hero {
+  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 55%, #ffffff 100%);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    var(--shadow-sm),
+    var(--shadow-lg);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.profile-hero-row {
+  display: flex;
+  align-items: center;
+}
+.profile-text-col {
+  flex: 1;
+  padding: 28px 18px 24px 32px;
+  min-width: 0;
+}
+.profile-photo-col {
+  padding: 28px 32px 24px 8px;
+}
+.profile-name-row {
+  text-align: center;
+  margin: 2px 0 22px;
+  font-size: clamp(28px, 4.2vw, 38px);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.name-en {
+  font-weight: 800;
+  color: #1a1a1a;
+}
+.name-cn {
+  font-weight: 700;
+  color: var(--ink-700);
+  margin-left: 0.35em;
+  letter-spacing: 0.02em;
+}
+.profile-intro {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  line-height: 1.72;
+  font-size: 15px;
+  color: var(--ink-body);
+  margin: 10px 0 6px;
+}
+.profile-links-cell {
+  border-top: 1px solid var(--card-separator);
+  padding: 4px 28px 22px;
+}
+@media (max-width: 640px) {
+  .profile-hero-row {
+    flex-direction: column-reverse;
+  }
+  .profile-text-col {
+    padding: 22px 22px 20px;
+  }
+  .profile-photo-col {
+    width: 100%;
+    padding: 22px 22px 8px;
+  }
+  .profile-links-cell {
+    padding: 4px 22px 20px;
+  }
+  .profile-intro {
+    text-align: left;
+  }
+}
+html[data-theme='dark'] .profile-hero {
+  background: linear-gradient(180deg, #16203a 0%, #121a2b 100%);
+  border-color: var(--border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    var(--shadow-sm),
+    var(--shadow-md);
+}
+html[data-theme='dark'] .name-en {
+  color: var(--ink-900);
+}
+html[data-theme='dark'] .name-cn {
+  color: var(--ink-600);
+}
+html[data-theme='dark'] .profile-intro {
+  color: var(--ink-700);
+}
+html[data-theme='dark'] .profile-links-cell {
+  border-top-color: var(--card-separator);
+}
+
 /* COMPONENT STYLES — later tasks insert blocks above this line. */

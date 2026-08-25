@@ -8,21 +8,19 @@ interface BioProps {
 
 export function Bio({ profile }: BioProps) {
   return (
-    <div className="mb-10 flex flex-col items-start gap-7 sm:flex-row">
-      <div className="shrink-0">
+    <div className="profile-hero">
+      <div className="profile-hero-row">
+        <div className="profile-text-col">
+          <p className="profile-name-row">
+            <span className="name-en">{profile.nameEn}</span>{' '}
+            <span className="name-cn">{profile.nameZh}</span>
+          </p>
+          <p className="profile-intro">{profile.bio}</p>
+        </div>
         <ProfilePhoto photos={profile.photos} alt={profile.nameEn} />
       </div>
-      <div className="flex-1">
-        <h1 className="text-3xl font-semibold">
-          {profile.nameEn}{' '}
-          <span className="font-normal text-slate-600 dark:text-slate-300">
-            {profile.nameZh}
-          </span>
-        </h1>
-        <p className="mt-3 leading-relaxed">{profile.bio}</p>
-        <div className="mt-4">
-          <ContactIcons contacts={profile.contacts} />
-        </div>
+      <div className="profile-links-cell">
+        <ContactIcons contacts={profile.contacts} />
       </div>
     </div>
   );

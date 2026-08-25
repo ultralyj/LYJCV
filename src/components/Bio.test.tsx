@@ -1,21 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Bio } from './Bio';
-import { profileFixture } from '../test/fixtures';
+import { profile } from '../data/profile';
 
 describe('Bio', () => {
-  it('renders name, Chinese name, bio text, and contact links', () => {
-    render(<Bio profile={profileFixture} />);
-    expect(screen.getByText('Jane Doe')).toBeInTheDocument();
-    expect(screen.getByText('杜娟')).toBeInTheDocument();
+  it('renders the hero with name, intro, photo and contacts', () => {
+    render(<Bio profile={profile} />);
+    const card = screen
+      .getByText(profile.nameEn)
+      .closest('.profile-hero') as HTMLElement;
+    expect(card).toBeInTheDocument();
+    expect(screen.getByText(profile.nameZh)).toBeInTheDocument();
     expect(
-      screen.getByText(/Ph.D. student at Example University/),
+      screen.getByRole('button', { name: /rotate profile photo/i }),
     ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
-  });
-
-  it('renders the profile photo with alt text equal to the English name', () => {
-    render(<Bio profile={profileFixture} />);
-    expect(screen.getByAltText('Jane Doe')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Email' })).toBeInTheDocument();
   });
 });
