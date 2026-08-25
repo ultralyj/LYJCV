@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap"
+    />
     <title>Your Name — Personal Homepage</title>
-    <meta name="description" content="Personal homepage of Your Name, Ph.D. student researching robotic manipulation and tactile perception." />
+    <meta
+      name="description"
+      content="Personal homepage of Your Name, Ph.D. student researching robotic manipulation and tactile perception."
+    />
     <meta property="og:title" content="Your Name — Personal Homepage" />
-    <meta property="og:description" content="Ph.D. student researching robotic manipulation and tactile perception." />
+    <meta
+      property="og:description"
+      content="Ph.D. student researching robotic manipulation and tactile perception."
+    />
     <meta property="og:type" content="website" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark')
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
