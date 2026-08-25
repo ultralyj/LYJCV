@@ -2,20 +2,205 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+:root {
+  --accent: #1772d0;
+  --accent-hover: #f09228;
+  --accent-soft: rgba(23, 114, 208, 0.1);
+  --accent-warm-soft: rgba(240, 146, 40, 0.08);
+
+  --ink-900: #0f172a;
+  --ink-800: #1e293b;
+  --ink-700: #334155;
+  --ink-600: #475569;
+  --ink-500: #64748b;
+  --ink-400: #94a3b8;
+  --ink-body: #2b2b2b;
+
+  --bg: #eef1f6;
+  --card: #ffffff;
+  --border: rgba(15, 23, 42, 0.07);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 12px 34px rgba(15, 23, 42, 0.08);
+
+  --radius-card: 14px;
+  --radius-sm: 6px;
+
+  --card-head-start: #f8fafc;
+  --card-head-end: #ffffff;
+  --card-separator: #e4e9ef;
+  --selected-row-bg: #ffffd0;
+  --selected-row-accent: rgba(245, 158, 11, 0.6);
+  --link-pill-bg: #ffffff;
+  --link-pill-border: #d8dee6;
+  --link-pill-ink: #1f2937;
+  --link-pill-hover-bg: #f0f7ff;
+  --filter-btn-bg: #ffffff;
+  --filter-btn-border: rgba(15, 23, 42, 0.14);
+  --filter-btn-ink: #334155;
+  --muted-bg: #f8fafc;
+  --heading-ink: #111827;
+  --photo-caption-ink: #5c6370;
+}
+
+html[data-theme='dark'] {
+  --accent: #60a5fa;
+  --accent-hover: #fbbf24;
+  --accent-soft: rgba(96, 165, 250, 0.13);
+  --accent-warm-soft: rgba(251, 191, 36, 0.09);
+
+  --ink-900: #f8fafc;
+  --ink-800: #f1f5f9;
+  --ink-700: #e2e8f0;
+  --ink-600: #cbd5e1;
+  --ink-500: #a3b0c2;
+  --ink-400: #94a3b8;
+  --ink-body: #e5e7eb;
+
+  --bg: #0b1220;
+  --card: #121a2b;
+  --border: rgba(148, 163, 184, 0.16);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.6);
+
+  --card-head-start: #141d30;
+  --card-head-end: #121a2b;
+  --card-separator: rgba(148, 163, 184, 0.14);
+  --selected-row-bg: rgba(250, 204, 21, 0.08);
+  --selected-row-accent: rgba(250, 204, 21, 0.55);
+  --link-pill-bg: #182338;
+  --link-pill-border: rgba(148, 163, 184, 0.22);
+  --link-pill-ink: #e2e8f0;
+  --link-pill-hover-bg: #1c2a44;
+  --filter-btn-bg: #182338;
+  --filter-btn-border: rgba(148, 163, 184, 0.22);
+  --filter-btn-ink: #cbd5e1;
+  --muted-bg: #141d30;
+  --heading-ink: #f1f5f9;
+  --photo-caption-ink: #94a3b8;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
 html {
   scroll-behavior: smooth;
 }
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
 
-section {
-  scroll-margin-top: 72px;
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(
+      1100px 420px at 18% -80px,
+      var(--accent-soft) 0%,
+      rgba(23, 114, 208, 0) 60%
+    ),
+    radial-gradient(
+      900px 380px at 92% 120px,
+      var(--accent-warm-soft) 0%,
+      rgba(240, 146, 40, 0) 60%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--ink-body);
+  padding: 12px 14px 32px;
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
-body {
-  @apply bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100;
+a {
+  color: var(--accent);
+  text-decoration: none;
 }
+a:hover,
+a:focus {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+.site-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Card shell + section heading
+   ========================================================================== */
+.site-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm), var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.site-section-body {
+  padding: 20px;
+}
+
+.site-section-head {
+  padding: 20px;
+  background: linear-gradient(
+    180deg,
+    var(--card-head-start) 0%,
+    var(--card-head-end) 55%
+  );
+  border-bottom: 1px solid var(--card-separator);
+}
+
+.section-heading {
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--heading-ink);
+  padding-left: 12px;
+  margin: 0;
+  border-left: 4px solid var(--accent);
+  line-height: 1.25;
+}
+
+.site-section p {
+  line-height: 1.68;
+  color: var(--ink-body);
+}
+.site-section ul {
+  margin: 0.4em 0 0.5em;
+  padding-left: 1.35em;
+}
+.site-section li {
+  margin-bottom: 0.55em;
+  line-height: 1.62;
+  color: var(--ink-body);
+}
+.site-section li::marker {
+  color: var(--accent);
+}
+
+/* Prose links inside sections */
+.prose-link {
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(23, 114, 208, 0.28);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.prose-link:hover,
+.prose-link:focus {
+  color: #0f5ba8;
+  border-bottom-color: #0f5ba8;
+}
+
+/* COMPONENT STYLES — later tasks insert blocks above this line. */
