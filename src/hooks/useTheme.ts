@@ -6,7 +6,6 @@ function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light';
   const stored = window.localStorage.getItem('theme');
   if (stored === 'light' || stored === 'dark') return stored;
-  // matchMedia may be unavailable in non-browser environments (e.g. jsdom).
   if (typeof window.matchMedia === 'function') {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
@@ -19,9 +18,9 @@ export function useTheme() {
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
-      root.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
     } else {
-      root.classList.remove('dark');
+      root.removeAttribute('data-theme');
     }
     window.localStorage.setItem('theme', theme);
   }, [theme]);

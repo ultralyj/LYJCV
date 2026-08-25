@@ -1,39 +1,35 @@
-import { renderHook, act } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { act, renderHook } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 import { useTheme } from './useTheme';
 
 describe('useTheme', () => {
-  beforeEach(() => {
+  it('defaults to light and sets no data-theme attribute when light', () => {
     localStorage.clear();
-    document.documentElement.classList.remove('dark');
-  });
-
-  afterEach(() => {
-    localStorage.clear();
-    document.documentElement.classList.remove('dark');
-  });
-
-  it('defaults to light when no preference and no system preference', () => {
+    window.matchMedia = () => ({ matches: false }) as MediaQueryList;
     const { result } = renderHook(() => useTheme());
     expect(result.current.theme).toBe('light');
-    expect(document.documentElement.classList.contains('dark')).toBe(false);
-  });
-
-  it('reads stored theme from localStorage', () => {
-    localStorage.setItem('theme', 'dark');
-    const { result } = renderHook(() => useTheme());
-    expect(result.current.theme).toBe('dark');
-    expect(document.documentElement.classList.contains('dark')).toBe(true);
-  });
-
-  it('toggles theme and persists to localStorage', () => {
-    const { result } = renderHook(() => useTheme());
-    act(() => result.current.toggleTheme());
-    expect(result.current.theme).toBe('dark');
-    expect(localStorage.getItem('theme')).toBe('dark');
-    expect(document.documentElement.classList.contains('dark')).toBe(true);
-    act(() => result.current.toggleTheme());
-    expect(result.current.theme).toBe('light');
+    expect(document.documentElement.getAttribute('data-theme')).toBeNull();
     expect(localStorage.getItem('theme')).toBe('light');
+  });
+
+  it('persists dark preference and sets data-theme="dark"', () => {
+    localStorage.clear();
+    window.matchMedia = () => ({ matches: true }) as MediaQueryList;
+    const { result } = renderHook(() => useTheme());
+    expect(result.current.theme).toBe('dark');
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    expect(localStorage.getItem('theme')).toBe('dark');
+  });
+
+  it('toggles the data-theme attribute', () => {
+    localStorage.clear();
+    window.matchMedia = () => ({ matches: false }) as MediaQueryList;
+    const { result } = renderHook(() => useTheme());
+    act(() => result.current.toggleTheme());
+    expect(result.current.theme).toBe('dark');
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    act(() => result.current.toggleTheme());
+    expect(result.current.theme).toBe('light');
+    expect(document.documentElement.getAttribute('data-theme')).toBeNull();
   });
 });
