@@ -14,10 +14,15 @@ export interface ContactLink {
   qrcode?: string;
 }
 
+export interface ProfilePhoto {
+  src: string;
+  caption: string;
+}
+
 export interface Profile {
   nameEn: string;
   nameZh: string;
-  photos: string[];
+  photos: ProfilePhoto[];
   bio: string;
   contacts: ContactLink[];
 }
@@ -27,36 +32,79 @@ export interface NewsItem {
   content: string;
 }
 
-export interface PublicationLinks {
-  paper?: string;
-  code?: string;
-  project?: string;
-  dataset?: string;
+/** Topic categories drive the colored tag/filter styling. */
+export type TagCategory =
+  | 'policy'
+  | 'grasping'
+  | 'manipulation'
+  | 'data'
+  | 'other';
+
+export interface Tag {
+  label: string;
+  category: TagCategory;
 }
+
+export type VenueType = 'conference' | 'journal' | 'preprint';
+
+export interface Venue {
+  name: string;
+  type: VenueType;
+}
+
+export interface Author {
+  name: string;
+  url?: string;
+  isOwn?: boolean;
+  equalContrib?: boolean;
+  corresponding?: boolean;
+}
+
+export type PublicationLinkKind =
+  | 'paper'
+  | 'code'
+  | 'project'
+  | 'twitter'
+  | 'dataset'
+  | 'demo'
+  | 'report'
+  | 'generic';
+
+export interface PublicationLink {
+  kind: PublicationLinkKind;
+  href: string;
+  label?: string;
+}
+
+export type Honor = 'oral' | 'best';
 
 export interface Publication {
   title: string;
-  authors: string[];
-  venue: string;
-  venueType?: 'conference' | 'journal' | 'preprint';
-  tags: string[];
+  authors: Author[];
+  venue: Venue;
+  tags: Tag[];
   selected?: boolean;
+  honor?: Honor;
   thumbnail?: string;
-  links: PublicationLinks;
+  links: PublicationLink[];
+  /** Non-link note shown next to links, e.g. "code coming soon". */
+  note?: string;
   abstract?: string;
 }
 
-export interface ProjectLinks {
-  code?: string;
-  report?: string;
-  demo?: string;
+export type ProjectLinkKind = 'code' | 'report' | 'demo' | 'project' | 'generic';
+
+export interface ProjectLink {
+  kind: ProjectLinkKind;
+  href: string;
+  label?: string;
 }
 
 export interface Project {
   title: string;
   description: string;
   thumbnail?: string;
-  links: ProjectLinks;
+  links: ProjectLink[];
 }
 
 export interface ServiceGroup {
@@ -68,6 +116,7 @@ export interface Talk {
   date: string;
   title: string;
   host: string;
+  hostUrl?: string;
   replay?: string;
 }
 
