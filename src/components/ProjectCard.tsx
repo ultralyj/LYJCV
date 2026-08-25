@@ -1,45 +1,54 @@
-import type { Project } from '../types';
+import type { Project, ProjectLinkKind } from '../types';
 
 interface ProjectCardProps {
   project: Project;
 }
 
-const LINK_LABELS: { key: keyof Project['links']; label: string }[] = [
-  { key: 'code', label: 'Code' },
-  { key: 'report', label: 'Report' },
-  { key: 'demo', label: 'Demo' },
-];
+const LINK_LABELS: Record<ProjectLinkKind, string> = {
+  code: 'code',
+  report: 'report',
+  demo: 'demo',
+  project: 'project page',
+  generic: 'link',
+};
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const { title, description, thumbnail, links } = project;
   return (
-    <div className="mb-5 flex flex-col gap-4 sm:flex-row">
-      {thumbnail && (
-        <img
-          src={thumbnail}
-          alt={`${title} thumbnail`}
-          loading="lazy"
-          className="h-24 w-36 shrink-0 rounded object-cover"
-        />
-      )}
-      <div className="text-sm leading-relaxed">
-        <div className="font-semibold">{title}</div>
-        <div className="text-slate-700 dark:text-slate-300">{description}</div>
-        <div className="mt-1 flex flex-wrap gap-x-3 text-accent dark:text-accent-dark">
-          {LINK_LABELS.filter(({ key }) => links[key]).map(({ key, label }) => (
-            <a
-              key={key}
-              href={links[key]}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="hover:underline"
-            >
-              [{label}]
-            </a>
-          ))}
-        </div>
+    <article className="paper-row">
+      <div className="paper-media-cell">
+        {thumbnail && (
+          <div className="paper-media-stack">
+            <div className="paper-media-figure">
+              <img
+                src={thumbnail}
+                alt={`${title} teaser`}
+                loading="lazy"
+                width={160}
+              />
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+      <div className="paper-content-cell">
+        <h3 className="paper-title">{title}</h3>
+        {links.length > 0 && (
+          <div className="paper-links">
+            {links.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`paper-link paper-link-${link.kind}`}
+              >
+                {link.label ?? LINK_LABELS[link.kind]}
+              </a>
+            ))}
+          </div>
+        )}
+        <p className="paper-abstract">{description}</p>
+      </div>
+    </article>
   );
 }

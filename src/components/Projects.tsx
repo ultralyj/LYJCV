@@ -9,9 +9,11 @@ interface ProjectsProps {
 export function Projects({ projects }: ProjectsProps) {
   return (
     <Section id="projects" title="Selected Projects">
-      {projects.map((p) => (
-        <ProjectCard key={p.title} project={p} />
-      ))}
+      <div className="paper-rows">
+        {projects.map((p) => (
+          <ProjectCard key={p.title} project={p} />
+        ))}
+      </div>
     </Section>
   );
 }
