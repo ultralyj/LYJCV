@@ -2,26 +2,38 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { News } from './News';
-import { newsFixture } from '../test/fixtures';
+import type { NewsItem } from '../types';
+
+const items: NewsItem[] = Array.from({ length: 8 }, (_, i) => ({
+  date: `2026-0${i + 1}`,
+  content: `News item number ${i + 1}`,
+}));
 
 describe('News', () => {
-  it('renders the section title', () => {
-    render(<News items={newsFixture} />);
-    expect(screen.getByRole('heading', { name: 'News' })).toBeInTheDocument();
+  it('shows 5 items initially with a collapsed list and an expand toggle', () => {
+    render(<News items={items} />);
+    expect(screen.getAllByRole('listitem')).toHaveLength(5);
+    expect(screen.getByRole('list')).toHaveAttribute('data-collapsed', 'true');
+    expect(
+      screen.getByRole('button', { name: /show earlier news/i }),
+    ).toBeInTheDocument();
   });
 
-  it('shows 4 items initially and a show-more toggle', () => {
-    render(<News items={newsFixture} />);
-    expect(screen.getByText('Paper accepted to CoRL 2026.')).toBeInTheDocument();
-    expect(screen.queryByText('Award.')).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /show more/i })).toBeInTheDocument();
+  it('expands to all items when toggled', async () => {
+    render(<News items={items} />);
+    await userEvent.click(
+      screen.getByRole('button', { name: /show earlier news/i }),
+    );
+    expect(screen.getAllByRole('listitem')).toHaveLength(8);
+    expect(
+      screen.getByRole('button', { name: /show less/i }),
+    ).toBeInTheDocument();
   });
 
-  it('expands and collapses', async () => {
-    render(<News items={newsFixture} />);
-    await userEvent.click(screen.getByRole('button', { name: /show more/i }));
-    expect(screen.getByText('Award.')).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: /show less/i }));
-    expect(screen.queryByText('Award.')).not.toBeInTheDocument();
+  it('renders no toggle when there are 5 or fewer items', () => {
+    render(<News items={items.slice(0, 4)} />);
+    expect(
+      screen.queryByRole('button', { name: /show/i }),
+    ).not.toBeInTheDocument();
   });
 });
