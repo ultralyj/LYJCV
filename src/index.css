@@ -744,4 +744,134 @@ html[data-theme='dark']
   );
 }
 
+/* ==========================================================================
+   Publications filter
+   ========================================================================== */
+.publications-filter {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+.publications-filter-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+}
+.publications-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 7px;
+}
+.pub-filter-btn {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--filter-btn-ink);
+  background: var(--filter-btn-bg);
+  border: 1px solid var(--filter-btn-border);
+  border-radius: 999px;
+  padding: 4px 6px 4px 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  line-height: 1.5;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+.pub-filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 6px;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-600);
+  background: rgba(15, 23, 42, 0.07);
+  border-radius: 999px;
+}
+.pub-filter-btn.is-active .pub-filter-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.pub-filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.28);
+}
+.pub-filter-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+.pub-filter-btn.is-active {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #1e293b;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+.pub-filter-btn[data-category='policy'].is-active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.pub-filter-btn[data-category='grasping'].is-active {
+  background: #059669;
+  border-color: #059669;
+}
+.pub-filter-btn[data-category='manipulation'].is-active {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+.pub-filter-btn[data-category='data'].is-active {
+  background: #7c3aed;
+  border-color: #7c3aed;
+}
+.pub-filter-btn[data-category='other'].is-active {
+  background: #64748b;
+  border-color: #64748b;
+}
+.pub-filter-btn-selected {
+  color: #78350f;
+  border-color: rgba(217, 119, 6, 0.45);
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+}
+.pub-filter-btn-selected:hover {
+  border-color: rgba(217, 119, 6, 0.75);
+}
+.pub-filter-btn-selected.is-active {
+  background: #d97706;
+  border-color: #d97706;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.28);
+}
+.pub-total-count {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  min-width: 1.8em;
+  margin-left: 0.45em;
+  padding: 0 0.55em;
+  font-size: 0.52em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-600);
+  background: rgba(15, 23, 42, 0.07);
+  border-radius: 999px;
+  vertical-align: 0.45em;
+}
+.publications-legend {
+  line-height: 1.65;
+  color: var(--ink-700);
+  margin: 0 0 2px;
+  font-size: 13px;
+}
+
 /* COMPONENT STYLES — later tasks insert blocks above this line. */
