@@ -29,7 +29,7 @@ export default function App() {
           <Bio profile={profile} />
         </header>
         <News items={news} />
-        <Publications publications={publications} ownName={profile.nameEn} />
+        <Publications publications={publications} />
         <Projects projects={projects} />
         <Services groups={services} />
         <Talks talks={talks} />
