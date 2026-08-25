@@ -2,35 +2,38 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { ContactIcons } from './ContactIcons';
-import { profileFixture } from '../test/fixtures';
+import type { ContactLink } from '../types';
+
+const contacts: ContactLink[] = [
+  { type: 'email', label: 'Email', href: 'you@example.com' },
+  { type: 'github', label: 'GitHub', href: 'https://github.com/you' },
+  {
+    type: 'wechat',
+    label: 'WeChat',
+    href: '#',
+    qrcode: '/images/qrcode.png',
+  },
+];
 
 describe('ContactIcons', () => {
-  it('renders links for each contact', () => {
-    render(<ContactIcons contacts={profileFixture.contacts} />);
-    expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute(
-      'href',
-      'https://github.com/jane',
-    );
+  it('renders external links as anchor pills with the profile-link class', () => {
+    render(<ContactIcons contacts={contacts} />);
+    const github = screen.getByRole('link', { name: 'GitHub' });
+    expect(github).toHaveAttribute('href', 'https://github.com/you');
+    expect(github).toHaveClass('profile-link', 'profile-link-github');
   });
 
-  it('renders a WeChat button that opens a QR modal', async () => {
-    const contacts = [
-      { type: 'wechat' as const, label: 'WeChat', href: '#', qrcode: '/qr.png' },
-    ];
+  it('opens the email modal when the email pill is activated', async () => {
     render(<ContactIcons contacts={contacts} />);
-    const btn = screen.getByRole('button', { name: /wechat/i });
-    await userEvent.click(btn);
+    await userEvent.click(screen.getByRole('button', { name: 'Email' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByAltText('WeChat QR code')).toHaveAttribute('src', '/qr.png');
+    expect(screen.getByText('you@example.com')).toBeInTheDocument();
   });
 
-  it('copies email to clipboard and shows confirmation', async () => {
-    const writeText = vi.fn().mockResolvedValue(undefined);
-    Object.assign(navigator, { clipboard: { writeText } });
-    const contacts = [{ type: 'email' as const, label: 'Email', href: 'jane@example.com' }];
+  it('opens the WeChat modal with the QR code', async () => {
     render(<ContactIcons contacts={contacts} />);
-    await userEvent.click(screen.getByRole('button', { name: /email/i }));
-    expect(writeText).toHaveBeenCalledWith('jane@example.com');
-    expect(await screen.findByText(/copied/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'WeChat' }));
+    const qr = screen.getByAltText('WeChat QR code');
+    expect(qr).toHaveAttribute('src', '/images/qrcode.png');
   });
 });

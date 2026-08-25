@@ -6,19 +6,11 @@ interface ContactIconsProps {
   contacts: ContactLink[];
 }
 
-const ICONS: Record<ContactLink['type'], string> = {
-  email: '✉️',
-  scholar: '📚',
-  github: '💻',
-  twitter: '🐦',
-  wechat: '💬',
-  cv: '📄',
-  link: '🔗',
-};
-
 export function ContactIcons({ contacts }: ContactIconsProps) {
   const [wechatOpen, setWechatOpen] = useState(false);
   const [wechatQr, setWechatQr] = useState<string | undefined>();
+  const [emailOpen, setEmailOpen] = useState(false);
+  const [emailAddress, setEmailAddress] = useState<string | undefined>();
   const [copied, setCopied] = useState(false);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -28,29 +20,33 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
     };
   }, []);
 
-  const handleEmail = async (address: string) => {
+  const copyEmail = async (address: string) => {
     try {
       await navigator.clipboard.writeText(address);
-      setCopied(true);
-      if (copyTimer.current) clearTimeout(copyTimer.current);
-      copyTimer.current = setTimeout(() => setCopied(false), 1500);
     } catch {
       window.location.href = `mailto:${address}`;
+      return;
     }
+    setCopied(true);
+    if (copyTimer.current) clearTimeout(copyTimer.current);
+    copyTimer.current = setTimeout(() => setCopied(false), 1500);
   };
 
   return (
-    <div className="relative flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <p className="profile-links">
       {contacts.map((c) => {
         if (c.type === 'email') {
           return (
             <button
               key={c.label}
               type="button"
-              onClick={() => handleEmail(c.href)}
-              className="text-accent hover:underline dark:text-accent-dark"
+              className={`profile-link profile-link-${c.type}`}
+              onClick={() => {
+                setEmailAddress(c.href);
+                setEmailOpen(true);
+              }}
             >
-              <span aria-hidden="true">{ICONS.email}</span> {c.label}
+              {c.label}
             </button>
           );
         }
@@ -59,37 +55,57 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
             <button
               key={c.label}
               type="button"
+              className="profile-link profile-link-wechat"
               onClick={() => {
                 setWechatQr(c.qrcode);
                 setWechatOpen(true);
               }}
-              className="text-accent hover:underline dark:text-accent-dark"
             >
-              <span aria-hidden="true">{ICONS.wechat}</span> {c.label}
+              {c.label}
             </button>
           );
         }
+        const isExternal = c.href.startsWith('http');
         return (
           <a
             key={c.label}
             href={c.href}
-            target={c.href.startsWith('http') ? '_blank' : undefined}
-            rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="text-accent hover:underline dark:text-accent-dark"
+            target={isExternal ? '_blank' : undefined}
+            rel={isExternal ? 'noopener noreferrer' : undefined}
+            className={`profile-link profile-link-${c.type}`}
           >
-            <span aria-hidden="true">{ICONS[c.type]}</span> {c.label}
+            {c.label}
           </a>
         );
       })}
-      {copied && (
-        <span
-          role="status"
-          className="absolute -bottom-6 left-0 rounded bg-slate-800 px-2 py-0.5 text-xs text-white dark:bg-slate-200 dark:text-slate-900"
-        >
-          Email copied!
-        </span>
-      )}
-      <Modal open={wechatOpen} onClose={() => setWechatOpen(false)} title="WeChat">
+
+      <Modal
+        open={emailOpen}
+        onClose={() => setEmailOpen(false)}
+        title="Contact via Email"
+      >
+        {emailAddress && (
+          <div className="email-modal-body">
+            <p className="email-modal-subtitle">
+              Click the address to copy it to your clipboard.
+            </p>
+            <button
+              type="button"
+              className="email-row"
+              onClick={() => copyEmail(emailAddress)}
+            >
+              <span className="email-address">{emailAddress}</span>
+              <span className="email-copy">{copied ? 'Copied!' : 'Copy'}</span>
+            </button>
+          </div>
+        )}
+      </Modal>
+
+      <Modal
+        open={wechatOpen}
+        onClose={() => setWechatOpen(false)}
+        title="WeChat"
+      >
         {wechatQr && (
           <img
             src={wechatQr}
@@ -101,6 +117,6 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
           Scan to add me on WeChat
         </p>
       </Modal>
-    </div>
+    </p>
   );
 }
