@@ -1,4 +1,3 @@
-import { Navbar } from './components/Navbar';
 import { Bio } from './components/Bio';
 import { News } from './components/News';
 import { Publications } from './components/Publications';
@@ -8,7 +7,7 @@ import { Talks } from './components/Talks';
 import { Notes } from './components/Notes';
 import { CustomSections } from './components/CustomSections';
 import { Footer } from './components/Footer';
-import { BackToTop } from './components/BackToTop';
+import { ThemeToggle } from './components/ThemeToggle';
 import { useTheme } from './hooks/useTheme';
 import { profile } from './data/profile';
 import { news } from './data/news';
@@ -23,14 +22,9 @@ export default function App() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div id="top" className="min-h-screen">
-      <Navbar
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        nameEn={profile.nameEn}
-        customSections={customSections}
-      />
-      <main className="mx-auto max-w-3xl px-4 py-8">
+    <div id="top" className="site-container">
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      <main className="py-4">
         <header id="about" className="scroll-mt-20">
           <Bio profile={profile} />
         </header>
@@ -43,7 +37,6 @@ export default function App() {
         <CustomSections sections={customSections} />
       </main>
       <Footer name={profile.nameEn} />
-      <BackToTop />
     </div>
   );
 }
