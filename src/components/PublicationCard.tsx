@@ -1,69 +1,134 @@
-import type { Publication } from '../types';
+import type { Publication, PublicationLinkKind } from '../types';
 
 interface PublicationCardProps {
   publication: Publication;
-  ownName: string;
 }
 
-const LINK_LABELS: { key: keyof Publication['links']; label: string }[] = [
-  { key: 'paper', label: 'Paper' },
-  { key: 'code', label: 'Code' },
-  { key: 'project', label: 'Project' },
-  { key: 'dataset', label: 'Dataset' },
-];
+const LINK_LABELS: Record<PublicationLinkKind, string> = {
+  paper: 'paper',
+  code: 'code',
+  project: 'project page',
+  twitter: 'X',
+  dataset: 'dataset',
+  demo: 'demo',
+  report: 'report',
+  generic: 'link',
+};
 
-export function PublicationCard({ publication, ownName }: PublicationCardProps) {
-  const { title, authors, venue, tags, thumbnail, links } = publication;
+export function PublicationCard({ publication }: PublicationCardProps) {
+  const {
+    title,
+    authors,
+    venue,
+    tags,
+    selected,
+    honor,
+    thumbnail,
+    links,
+    note,
+    abstract,
+  } = publication;
 
   return (
-    <div className="mb-5 flex flex-col gap-4 sm:flex-row">
-      {thumbnail && (
-        <img
-          src={thumbnail}
-          alt={`${title} thumbnail`}
-          loading="lazy"
-          className="h-24 w-36 shrink-0 rounded object-cover"
-        />
-      )}
-      <div className="text-sm leading-relaxed">
-        <div className="font-semibold">{title}</div>
-        <div className="text-slate-700 dark:text-slate-300">
-          {authors.map((a, i) => {
-            const isOwn = a.trim().toLowerCase() === ownName.trim().toLowerCase();
-            return (
-              <span key={a + i}>
-                {i > 0 && ', '}
-                {isOwn ? <strong className="underline">{a}</strong> : a}
-              </span>
+    <article
+      className={`paper-row${selected ? ' paper-row-selected' : ''}`}
+    >
+      <div className="paper-media-cell">
+        {thumbnail && (
+          <div className="paper-media-stack">
+            <div className="paper-media-figure">
+              <img
+                src={thumbnail}
+                alt={`${title} teaser`}
+                loading="lazy"
+                width={160}
+              />
+            </div>
+            {tags.length > 0 && (
+              <div className="paper-tags-overlay">
+                {tags.map((tag) => (
+                  <span
+                    key={tag.label}
+                    className={`paper-tag paper-tag-${tag.category}`}
+                  >
+                    {tag.label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        {selected && <span className="selected-badge">Selected</span>}
+      </div>
+      <div className="paper-content-cell">
+        <div className="paper-venue">
+          <em className={`venue-${venue.type}`}>{venue.name}</em>
+          {honor && (
+            <span
+              className={`paper-honor${
+                honor === 'best' ? ' paper-honor-best' : ''
+              }`}
+            >
+              {honor === 'best' ? 'Best Paper' : 'Oral'}
+            </span>
+          )}
+        </div>
+        <h3 className="paper-title">
+          {links[0]?.kind === 'paper' && links[0]?.href ? (
+            <a href={links[0].href} target="_blank" rel="noopener noreferrer">
+              {title}
+            </a>
+          ) : (
+            title
+          )}
+        </h3>
+        <div className="paper-authors">
+          {authors.map((author, i) => {
+            const sep = i < authors.length - 1 ? ', ' : '';
+            const marker = author.equalContrib ? (
+              <sup className="author-marker">*</sup>
+            ) : author.corresponding ? (
+              <sup className="author-marker">#</sup>
+            ) : null;
+            const content = (
+              <>
+                {author.isOwn ? <b>{author.name}</b> : author.name}
+                {marker}
+                {sep}
+              </>
+            );
+            return author.url ? (
+              <a
+                key={author.name + i}
+                href={author.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
+              <span key={author.name + i}>{content}</span>
             );
           })}
         </div>
-        <div className="italic text-slate-600 dark:text-slate-400">{venue}</div>
-        <div className="mt-0.5 flex flex-wrap gap-x-3 gap-y-1">
-          {tags.map((t) => (
-            <span
-              key={t}
-              className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600 dark:bg-slate-700 dark:text-slate-300"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-        <div className="mt-1 flex flex-wrap gap-x-3 text-accent dark:text-accent-dark">
-          {LINK_LABELS.filter(({ key }) => links[key]).map(({ key, label }) => (
-            <a
-              key={key}
-              href={links[key]}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="hover:underline"
-            >
-              [{label}]
-            </a>
-          ))}
-        </div>
+        {links.length > 0 && (
+          <div className="paper-links">
+            {links.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`paper-link paper-link-${link.kind}`}
+              >
+                {link.label ?? LINK_LABELS[link.kind]}
+              </a>
+            ))}
+            {note && <span className="paper-link-note">{note}</span>}
+          </div>
+        )}
+        {abstract && <p className="paper-abstract">{abstract}</p>}
       </div>
-    </div>
+    </article>
   );
 }
