@@ -1345,4 +1345,23 @@ html[data-theme='dark'] .selected-badge {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
+/* ==========================================================================
+   Services / Talks lists
+   ========================================================================== */
+.services-list,
+.talks-list {
+  margin: 0.2em 0 0;
+  padding-left: 1.35em;
+}
+.services-list li,
+.talks-list li {
+  margin-bottom: 0.5em;
+  line-height: 1.62;
+  color: var(--ink-body);
+}
+.talk-date {
+  font-weight: 700;
+  color: var(--ink-800);
+}
+
 /* COMPONENT STYLES — later tasks insert blocks above this line. */

@@ -8,11 +8,13 @@ interface ServicesProps {
 export function Services({ groups }: ServicesProps) {
   return (
     <Section id="services" title="Academic Services">
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="space-y-4">
         {groups.map((group) => (
           <div key={group.heading}>
-            <h3 className="mb-2 text-sm font-semibold">{group.heading}</h3>
-            <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">
+            <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-slate-700 dark:text-slate-200">
+              {group.heading}
+            </h3>
+            <ul className="services-list">
               {group.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}

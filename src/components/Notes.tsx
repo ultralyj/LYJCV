@@ -15,7 +15,7 @@ export function Notes({ notes }: NotesProps) {
               href={note.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent hover:underline dark:text-accent-dark"
+              className="prose-link"
             >
               {note.title}
             </a>

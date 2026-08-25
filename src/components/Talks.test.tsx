@@ -1,20 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Talks } from './Talks';
+import type { Talk } from '../types';
+
+const talks: Talk[] = [
+  { date: '2026-03', title: 'A Talk', host: 'MIT', hostUrl: 'https://mit.edu', replay: '/r' },
+];
 
 describe('Talks', () => {
-  it('renders talks with host and optional replay link', () => {
-    render(
-      <Talks
-        talks={[
-          { date: 'May 2026', title: 'A Talk', host: 'Some Seminar', replay: 'https://r' },
-          { date: 'Oct 2025', title: 'Another', host: 'Workshop' },
-        ]}
-      />,
-    );
-    expect(screen.getByRole('heading', { name: 'Talks' })).toBeInTheDocument();
+  it('renders bold date, title, linked host and replay link', () => {
+    render(<Talks talks={talks} />);
+    expect(screen.getByText('[2026-03]')).toHaveClass('talk-date');
     expect(screen.getByText('A Talk')).toBeInTheDocument();
-    expect(screen.getByText(/Some Seminar/)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /replay/i })).toHaveAttribute('href', 'https://r');
+    expect(screen.getByRole('link', { name: 'MIT' })).toHaveAttribute(
+      'href',
+      'https://mit.edu',
+    );
+    expect(screen.getByRole('link', { name: '[replay]' })).toBeInTheDocument();
   });
 });
