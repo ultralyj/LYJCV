@@ -1,4 +1,5 @@
 import type { Project, ProjectLinkKind } from '../types';
+import { withBase } from '../utils/asset';
 
 interface ProjectCardProps {
   project: Project;
@@ -21,7 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div className="paper-media-stack">
             <div className="paper-media-figure">
               <img
-                src={thumbnail}
+                src={withBase(thumbnail)}
                 alt={`${title} teaser`}
                 loading="lazy"
                 width={160}

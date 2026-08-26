@@ -1,4 +1,5 @@
 import type { Publication, PublicationLinkKind } from '../types';
+import { withBase } from '../utils/asset';
 
 interface PublicationCardProps {
   publication: Publication;
@@ -38,7 +39,7 @@ export function PublicationCard({ publication }: PublicationCardProps) {
           <div className="paper-media-stack">
             <div className="paper-media-figure">
               <img
-                src={thumbnail}
+                src={withBase(thumbnail)}
                 alt={`${title} teaser`}
                 loading="lazy"
                 width={160}

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { CustomSection } from '../types';
 import { Section } from './Section';
+import { withBase } from '../utils/asset';
 
 interface CustomSectionsProps {
   sections: CustomSection[];
@@ -30,7 +31,7 @@ function CardLayout({ items }: { items: CustomSection['items'] }) {
           <>
             {item.thumbnail && (
               <img
-                src={item.thumbnail}
+                src={withBase(item.thumbnail!)}
                 alt={item.title ?? ''}
                 loading="lazy"
                 className="mb-2 h-28 w-full rounded object-cover"

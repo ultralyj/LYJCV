@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ContactLink } from '../types';
 import { Modal } from './Modal';
+import { withBase } from '../utils/asset';
 
 interface ContactIconsProps {
   contacts: ContactLink[];
@@ -79,7 +80,7 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
         return (
           <a
             key={c.label}
-            href={c.href}
+            href={withBase(c.href)}
             target={isExternal ? '_blank' : undefined}
             rel={isExternal ? 'noopener noreferrer' : undefined}
             className={`profile-link profile-link-${c.type}`}
@@ -128,7 +129,7 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
       >
         {wechatQr && (
           <img
-            src={wechatQr}
+            src={withBase(wechatQr)}
             alt="WeChat QR code"
             className="mx-auto h-96 w-96 max-w-full rounded object-contain"
           />

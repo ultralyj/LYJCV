@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ProfilePhoto as ProfilePhotoType } from '../types';
+import { withBase } from '../utils/asset';
 
 interface ProfilePhotoProps {
   photos: ProfilePhotoType[];
@@ -45,7 +46,12 @@ export function ProfilePhoto({ photos, alt }: ProfilePhotoProps) {
         aria-label="Rotate profile photo"
         onClick={handleClick}
       >
-        <img src={current.src} alt={alt} loading="lazy" className={imgClass} />
+        <img
+          src={withBase(current.src)}
+          alt={alt}
+          loading="lazy"
+          className={imgClass}
+        />
       </button>
       <p
         className={`profile-caption${swapping ? ' is-caption-swapping' : ''}`}
