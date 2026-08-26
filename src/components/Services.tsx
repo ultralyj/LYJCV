@@ -1,13 +1,24 @@
 import type { ServiceGroup } from '../types';
 import { Section } from './Section';
+import { withBase } from '../utils/asset';
 
 interface ServicesProps {
   groups: ServiceGroup[];
 }
 
 export function Services({ groups }: ServicesProps) {
+  const robotUrl = withBase('/robot.svg');
   return (
     <Section id="services" title="Academic Services">
+      <div
+        className="news-deco"
+        aria-hidden="true"
+        style={{
+          WebkitMaskImage: `url(${robotUrl})`,
+          maskImage: `url(${robotUrl})`,
+        }}
+      />
+      <div className="news-content">
       <div className="space-y-4">
         {groups.map((group) => (
           <div key={group.heading}>
@@ -21,6 +32,7 @@ export function Services({ groups }: ServicesProps) {
             </ul>
           </div>
         ))}
+      </div>
       </div>
     </Section>
   );

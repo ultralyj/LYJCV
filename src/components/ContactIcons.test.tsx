@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { ContactIcons } from './ContactIcons';
+import { withBase } from '../utils/asset';
 import type { ContactLink } from '../types';
 
 const contacts: ContactLink[] = [
@@ -34,7 +35,7 @@ describe('ContactIcons', () => {
     render(<ContactIcons contacts={contacts} />);
     await userEvent.click(screen.getByRole('button', { name: 'WeChat' }));
     const qr = screen.getByAltText('WeChat QR code');
-    expect(qr).toHaveAttribute('src', '/images/qrcode.png');
+    expect(qr).toHaveAttribute('src', withBase('/images/qrcode.png'));
   });
 
   it('lists all labelled addresses in the email modal when addresses is provided', async () => {

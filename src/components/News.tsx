@@ -1,6 +1,7 @@
 import type { NewsItem } from '../types';
 import { useCollapsible } from '../hooks/useCollapsible';
 import { Section } from './Section';
+import { withBase } from '../utils/asset';
 
 interface NewsProps {
   items: NewsItem[];
@@ -16,8 +17,19 @@ export function News({ items }: NewsProps) {
   const visible = items.slice(0, visibleCount);
   const hasMore = items.length > INITIAL_VISIBLE;
 
+  const robotUrl = withBase('/robot.svg');
+
   return (
     <Section id="news" title="News">
+      <div
+        className="news-deco"
+        aria-hidden="true"
+        style={{
+          WebkitMaskImage: `url(${robotUrl})`,
+          maskImage: `url(${robotUrl})`,
+        }}
+      />
+      <div className="news-content">
       <ul
         className="news-list"
         data-collapsed={hasMore && !expanded ? 'true' : 'false'}
@@ -64,6 +76,7 @@ export function News({ items }: NewsProps) {
           </svg>
         </button>
       )}
+      </div>
     </Section>
   );
 }

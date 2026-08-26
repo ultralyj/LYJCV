@@ -584,6 +584,41 @@ html[data-theme='dark'] .profile-links-cell {
 /* ==========================================================================
    News
    ========================================================================== */
+#news .site-section-body,
+#services .site-section-body {
+  position: relative;
+}
+.news-content {
+  position: relative;
+  z-index: 1;
+}
+.news-deco {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  width: 200px;
+  height: 300px;
+  background: rgba(147, 197, 253, 0.32);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-theme='dark'] .news-deco {
+  background: rgba(96, 165, 250, 0.22);
+}
+@media (max-width: 640px) {
+  .news-deco {
+    width: 130px;
+    height: 200px;
+    opacity: 0.6;
+  }
+}
+
 .news-list {
   list-style: none;
   padding: 6px 0 4px;

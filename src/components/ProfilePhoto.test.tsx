@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ProfilePhoto } from './ProfilePhoto';
+import { withBase } from '../utils/asset';
 import type { ProfilePhoto as ProfilePhotoType } from '../types';
 
 const photos: ProfilePhotoType[] = [
@@ -14,7 +15,7 @@ describe('ProfilePhoto', () => {
     const img = screen.getByRole('button', { name: /rotate profile photo/i });
     expect(img).toBeInTheDocument();
     const im = img.querySelector('img');
-    expect(im).toHaveAttribute('src', '/a.jpg');
+    expect(im).toHaveAttribute('src', withBase('/a.jpg'));
     expect(im).toHaveAttribute('alt', 'Your Name');
     expect(screen.getByText('First photo')).toBeInTheDocument();
   });
@@ -33,7 +34,7 @@ describe('ProfilePhoto', () => {
       const im = screen
         .getByRole('button', { name: /rotate profile photo/i })
         .querySelector('img');
-      expect(im).toHaveAttribute('src', '/b.jpg');
+      expect(im).toHaveAttribute('src', withBase('/b.jpg'));
       expect(screen.getByText('Second photo')).toBeInTheDocument();
     } finally {
       vi.useRealTimers();

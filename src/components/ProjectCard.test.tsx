@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { ProjectCard } from './ProjectCard';
+import { withBase } from '../utils/asset';
 import type { Project } from '../types';
 
 const project: Project = {
@@ -20,7 +21,10 @@ describe('ProjectCard', () => {
       .getByText('Example Project One')
       .closest('.paper-row') as HTMLElement;
     expect(row).toBeInTheDocument();
-    expect(screen.getByAltText(/teaser/)).toHaveAttribute('src', '/p.jpg');
+    expect(screen.getByAltText(/teaser/)).toHaveAttribute(
+      'src',
+      withBase('/p.jpg'),
+    );
     expect(screen.getByRole('link', { name: /^code$/i })).toHaveClass(
       'paper-link-code',
     );

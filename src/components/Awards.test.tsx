@@ -15,7 +15,9 @@ describe('Awards', () => {
         ]}
       />,
     );
-    expect(screen.getByRole('heading', { name: 'Awards' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Selected Awards' }),
+    ).toBeInTheDocument();
     expect(screen.getByText('First Prize')).toBeInTheDocument();
     expect(screen.getByText('National Robotics Competition')).toBeInTheDocument();
     expect(screen.getByText('2025')).toBeInTheDocument();
