@@ -15,7 +15,10 @@ export function Bio({ profile }: BioProps) {
             <span className="name-en">{profile.nameEn}</span>{' '}
             <span className="name-cn">{profile.nameZh}</span>
           </h1>
-          <p className="profile-intro">{profile.bio}</p>
+          <p
+            className="profile-intro"
+            dangerouslySetInnerHTML={{ __html: profile.bio }}
+          />
         </div>
         <ProfilePhoto photos={profile.photos} alt={profile.nameEn} />
       </div>

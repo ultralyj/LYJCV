@@ -7,7 +7,7 @@ import type { TagCategory } from '../types';
 const buttons: { label: string; value: string; count: number; category?: TagCategory | 'selected' }[] = [
   { label: 'All', value: 'all', count: 3 },
   { label: 'Selected', value: 'selected', count: 1, category: 'selected' },
-  { label: 'Grasping', value: 'Grasping', count: 2, category: 'grasping' },
+  { label: 'Grasping', value: 'Grasping', count: 2, category: 'tactile' },
 ];
 
 describe('PublicationsFilter', () => {

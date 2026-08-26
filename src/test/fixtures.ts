@@ -26,7 +26,7 @@ export const publicationsFixture: Publication[] = [
     venue: { name: 'CoRL 2026', type: 'conference' },
     tags: [
       { label: 'Tactile', category: 'manipulation' },
-      { label: 'Grasping', category: 'grasping' },
+      { label: 'Grasping', category: 'tactile' },
     ],
     selected: true,
     links: [

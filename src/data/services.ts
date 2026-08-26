@@ -3,10 +3,14 @@ import type { ServiceGroup } from '../types';
 export const services: ServiceGroup[] = [
   {
     heading: 'Conference Reviewing',
-    items: ['ICRA 2024–2026', 'IROS 2025', 'CoRL 2025'],
+    items: ['ICRA 2025', 'IROS 2025-2026'],
   },
   {
     heading: 'Journal Reviewing',
-    items: ['IEEE Robotics and Automation Letters', 'IEEE Transactions on Robotics'],
+    items: ['IEEE/ASME Transactions on Mechatronics',
+        'IEEE Transactions on Industrial Electronics',
+         'IEEE Transactions on Instrumentation and Measurement',
+          'IEEE Robotics and Automation Letters',
+           'IEEE Sensors Journal'],
   },
 ];

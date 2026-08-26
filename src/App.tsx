@@ -3,7 +3,7 @@ import { News } from './components/News';
 import { Publications } from './components/Publications';
 import { Projects } from './components/Projects';
 import { Services } from './components/Services';
-import { Talks } from './components/Talks';
+import { Awards } from './components/Awards';
 import { Notes } from './components/Notes';
 import { CustomSections } from './components/CustomSections';
 import { Footer } from './components/Footer';
@@ -14,7 +14,7 @@ import { news } from './data/news';
 import { publications } from './data/publications';
 import { projects } from './data/projects';
 import { services } from './data/services';
-import { talks } from './data/talks';
+import { awards } from './data/awards';
 import { notes } from './data/notes';
 import { customSections } from './data/customSections';
 
@@ -32,7 +32,7 @@ export default function App() {
         <Publications publications={publications} />
         <Projects projects={projects} />
         <Services groups={services} />
-        <Talks talks={talks} />
+        <Awards awards={awards} />
         <Notes notes={notes} />
         <CustomSections sections={customSections} />
       </main>

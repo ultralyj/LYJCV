@@ -12,6 +12,12 @@ export interface ContactLink {
   label: string;
   href: string;
   qrcode?: string;
+  /**
+   * For `type: 'email'`: multiple addresses shown in the email modal, each
+   * copyable and labelled (e.g. "School email"). When omitted, the modal
+   * shows `href` as a single unlabelled address.
+   */
+  addresses?: Array<{ label: string; address: string }>;
 }
 
 export interface ProfilePhoto {
@@ -35,9 +41,9 @@ export interface NewsItem {
 /** Topic categories drive the colored tag/filter styling. */
 export type TagCategory =
   | 'policy'
-  | 'grasping'
+  | 'tactile'
   | 'manipulation'
-  | 'data'
+  | 'simulation'
   | 'other';
 
 export interface Tag {
@@ -124,6 +130,16 @@ export interface NoteLink {
   title: string;
   href: string;
   description?: string;
+}
+
+export interface Award {
+  /** Prize level, e.g. "First Prize" or "Rising Star Award". */
+  prize: string;
+  /** Competition or program name. */
+  competition: string;
+  year: string;
+  /** Optional link attached to the prize text. */
+  href?: string;
 }
 
 export type CustomSectionLayout = 'cards' | 'list' | 'paragraph';

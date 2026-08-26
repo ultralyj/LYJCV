@@ -36,4 +36,25 @@ describe('ContactIcons', () => {
     const qr = screen.getByAltText('WeChat QR code');
     expect(qr).toHaveAttribute('src', '/images/qrcode.png');
   });
+
+  it('lists all labelled addresses in the email modal when addresses is provided', async () => {
+    const multi: ContactLink[] = [
+      {
+        type: 'email',
+        label: 'Email',
+        href: 'school@tongji.edu.cn',
+        addresses: [
+          { label: 'School email', address: 'school@tongji.edu.cn' },
+          { label: 'Personal email', address: 'personal@gmail.com' },
+        ],
+      },
+    ];
+    render(<ContactIcons contacts={multi} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Email' }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('School email')).toBeInTheDocument();
+    expect(screen.getByText('school@tongji.edu.cn')).toBeInTheDocument();
+    expect(screen.getByText('Personal email')).toBeInTheDocument();
+    expect(screen.getByText('personal@gmail.com')).toBeInTheDocument();
+  });
 });

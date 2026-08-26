@@ -56,7 +56,7 @@ describe('PublicationCard', () => {
       selected: false,
       honor: undefined,
       thumbnail: undefined,
-      tags: [{ label: 'Grasping', category: 'grasping' }],
+      tags: [{ label: 'Grasping', category: 'tactile' }],
       links: [{ kind: 'paper', href: '/p' }],
       note: undefined,
       abstract: undefined,

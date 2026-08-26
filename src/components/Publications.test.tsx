@@ -41,13 +41,9 @@ describe('Publications', () => {
   it('filters by a tag category label', async () => {
     render(<Publications publications={publications} />);
     await userEvent.click(
-      screen.getByRole('button', { name: /grasping/i }),
+      screen.getByRole('button', { name: /simulation/i }),
     );
-    expect(
-      screen.getByText('Example Grasping Paper'),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByText('Example Tactile Manipulation Paper'),
-    ).not.toBeInTheDocument();
+    expect(screen.getByText(/TacMagPie/)).toBeInTheDocument();
+    expect(screen.queryByText(/FTFNet/)).not.toBeInTheDocument();
   });
 });

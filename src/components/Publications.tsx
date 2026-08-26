@@ -10,8 +10,8 @@ interface PublicationsProps {
 const CATEGORY_ORDER: TagCategory[] = [
   'policy',
   'manipulation',
-  'grasping',
-  'data',
+  'tactile',
+  'simulation',
   'other',
 ];
 
