@@ -293,5 +293,36 @@ export const publications: Publication[] = [
     note: 'Under review',
     abstract:
       'We present a neuromorphic tactile perception system that couples heterogeneous, biology-inspired spike encoding with a lightweight spiking neural network for rapid edge inference. By processing multiple encoding schemes together, the robot classifies tactile interactions within a handful of time steps with very low data bandwidth, enabling fast, reflex-like responses during dexterous interaction.',
+  },
+  {
+    title:
+      'Design and Implementation of a Multimodal Perception Intelligent Skin for Amphibious Autonomous Vehicles',
+    authors: [
+      { name: 'Bin Lei' },
+      { name: 'Yijie Luo', isOwn: true },
+      { name: 'Wei Wang' },
+      { name: 'Siyuan He' },
+      { name: 'Zhipeng Wang' },
+      { name: 'Bin Cheng' },
+      { name: 'Yanmin Zhou' },
+      { name: 'Bin He' },
+    ],
+    venue: {
+      name: '16th IFAC Conference on Control Applications in Marine Systems (2025)',
+      type: 'conference',
+    },
+    tags: [
+      { label: 'Tactile', category: 'tactile' },
+      { label: 'Sensors', category: 'other' },
+    ],
+    thumbnail: '/images/papers/ifac.png',
+    links: [
+      {
+        kind: 'paper',
+        href: 'https://www.sciencedirect.com/science/article/pii/S2405896325023328',
+      }
+    ],
+    abstract:
+      'We developed a multimodal intelligent skin for amphibious agents, achieving reliable environmental sensing and 90.94% accuracy in medium-transition recognition.',
   }
 ];
