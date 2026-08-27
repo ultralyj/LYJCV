@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Design tokens — light theme (default)
+   ========================================================================== */
+:root {
+  /* Brand accents */
+  --accent: #1772d0;
+  --accent-hover: #f09228;
+  --accent-soft: rgba(23, 114, 208, 0.1);
+  --accent-warm-soft: rgba(240, 146, 40, 0.08);
+  --accent-soft-fade: rgba(23, 114, 208, 0);
+  --accent-warm-soft-fade: rgba(240, 146, 40, 0);
+
+  /* Ink scale */
+  --ink-900: #0f172a;
+  --ink-800: #1e293b;
+  --ink-700: #334155;
+  --ink-600: #475569;
+  --ink-500: #64748b;
+  --ink-400: #94a3b8;
+  --ink-body: #2b2b2b;
+
+  /* Surfaces */
+  --bg: #eef1f6;
+  --card: #ffffff;
+  --border: rgba(15, 23, 42, 0.07);
+  --on-color: #ffffff;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 12px 34px rgba(15, 23, 42, 0.08);
+
+  /* Radius */
+  --radius-card: 14px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+
+  /* Card chrome */
+  --card-head-start: #f8fafc;
+  --card-head-end: #ffffff;
+  --card-separator: #e4e9ef;
+
+  /* Link pills */
+  --link-pill-bg: #ffffff;
+  --link-pill-border: #d8dee6;
+  --link-pill-ink: #1f2937;
+  --link-pill-hover-bg: #f0f7ff;
+
+  /* Filter buttons */
+  --filter-btn-bg: #ffffff;
+  --filter-btn-border: rgba(15, 23, 42, 0.14);
+  --filter-btn-ink: #334155;
+  --filter-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --filter-hover-shadow: 0 3px 8px rgba(15, 23, 42, 0.1);
+  --filter-hover-border: rgba(15, 23, 42, 0.28);
+  --filter-active-bg: #1e293b;
+  --filter-active-ink: #f8fafc;
+  --filter-active-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+  --filter-count-active-bg: rgba(255, 255, 255, 0.22);
+
+  /* Muted chips */
+  --muted-bg: #f8fafc;
+  --chip-bg: #f8fafc;
+  --count-bg: rgba(15, 23, 42, 0.07);
+  --award-year-bg: rgba(15, 23, 42, 0.06);
+
+  /* Headings */
+  --heading-ink: #111827;
+  --name-ink: #1a1a1a;
+  --name-cn-ink: var(--ink-700);
+  --intro-ink: var(--ink-body);
+  --photo-caption-ink: #5c6370;
+
+  /* Category accents */
+  --cat-policy: #2563eb;
+  --cat-tactile: #059669;
+  --cat-manipulation: #dc2626;
+  --cat-simulation: #7c3aed;
+  --cat-other: #64748b;
+  --amber: #f59e0b;
+
+  /* Accent chrome for buttons / chips / links */
+  --accent-border: rgba(23, 114, 208, 0.45);
+  --accent-border-strong: rgba(23, 114, 208, 0.55);
+  --accent-link-line: rgba(23, 114, 208, 0.28);
+  --accent-shadow: rgba(23, 114, 208, 0.14);
+  --warm-line: rgba(240, 146, 40, 0.45);
+  --lift-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+  --pill-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --pill-muted-bg: #f1f5f9;
+  --transition-pill: transform 0.12s ease, border-color 0.12s ease,
+    color 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+
+  /* Hero */
+  --hero-bg: linear-gradient(180deg, #fafbfc 0%, #ffffff 55%, #ffffff 100%);
+  --hero-inset: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  --hero-shadow: var(--hero-inset), var(--shadow-sm), var(--shadow-lg);
+
+  /* Profile photo */
+  --photo-ring: rgba(15, 23, 42, 0.06);
+  --photo-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  --photo-ring-hover: rgba(23, 114, 208, 0.28);
+  --photo-shadow-hover: 0 14px 34px rgba(15, 23, 42, 0.18);
+
+  /* Theme toggle */
+  --toggle-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --toggle-ring: rgba(96, 165, 250, 0.45);
+  --toggle-hover-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+
+  /* Robot decoration */
+  --deco-fill: rgba(147, 197, 253, 0.32);
+
+  /* News fade mask */
+  --news-fade-from: rgba(255, 255, 255, 0);
+
+  /* Amber / "selected" family */
+  --amber-solid: #d97706;
+  --amber-solid-shadow: 0 2px 6px rgba(217, 119, 6, 0.28);
+  --amber-soft-bg: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  --amber-ink: #78350f;
+  --amber-border: rgba(217, 119, 6, 0.45);
+  --amber-border-strong: rgba(217, 119, 6, 0.75);
+  --badge-ink: #92400e;
+  --badge-bg: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  --badge-border: rgba(217, 119, 6, 0.45);
+  --badge-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+  --selected-row-bg: linear-gradient(
+    125deg,
+    #fffbeb 0%,
+    #fffef5 35%,
+    #fffdf8 70%,
+    #fffef9 100%
+  );
+  --selected-row-inset: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --selected-row-ring: inset 0 0 0 1px rgba(245, 158, 11, 0.18);
+  --selected-row-border: rgba(217, 119, 6, 0.22);
+  --selected-img-border: rgba(217, 119, 6, 0.4);
+  --selected-img-shadow: 0 4px 16px rgba(180, 83, 9, 0.14),
+    0 2px 6px rgba(15, 23, 42, 0.08);
+
+  /* Paper / publication region */
+  --paper-title: #020617;
+  --paper-authors: #4b5563;
+  --paper-authors-strong: #0f172a;
+  --paper-body: #475569;
+  --paper-abstract: #5a6578;
+  --paper-img-border: #dde3ea;
+  --paper-img-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
+  --tag-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+
+  /* Honor badges */
+  --honor-ink: #7c2d12;
+  --honor-bg: linear-gradient(135deg, #fde68a 0%, #fdba74 55%, #fb923c 100%);
+  --honor-border: rgba(194, 65, 12, 0.35);
+  --honor-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);
+  --honor-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --honor-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  --honor-shimmer: rgba(255, 255, 255, 0.55);
+  --honor-best-ink: #7f1d1d;
+  --honor-best-bg: linear-gradient(
+    135deg,
+    #fde68a 0%,
+    #fca5a5 55%,
+    #ef4444 100%
+  );
+  --honor-best-border: rgba(153, 27, 27, 0.45);
+  --honor-best-shadow: 0 2px 6px rgba(185, 28, 28, 0.3);
+}
+
+/* ==========================================================================
+   Design tokens — dark theme
+   ========================================================================== */
+html[data-theme='dark'] {
+  --accent: #60a5fa;
+  --accent-hover: #fbbf24;
+  --accent-soft: rgba(96, 165, 250, 0.13);
+  --accent-warm-soft: rgba(251, 191, 36, 0.09);
+  --accent-soft-fade: rgba(96, 165, 250, 0);
+  --accent-warm-soft-fade: rgba(251, 191, 36, 0);
+
+  --ink-900: #f8fafc;
+  --ink-800: #f1f5f9;
+  --ink-700: #e2e8f0;
+  --ink-600: #cbd5e1;
+  --ink-500: #a3b0c2;
+  --ink-400: #94a3b8;
+  --ink-body: #e5e7eb;
+
+  --bg: #0b1220;
+  --card: #121a2b;
+  --border: rgba(148, 163, 184, 0.16);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.6);
+
+  --card-head-start: #141d30;
+  --card-head-end: #121a2b;
+  --card-separator: rgba(148, 163, 184, 0.14);
+  --link-pill-bg: #182338;
+  --link-pill-border: rgba(148, 163, 184, 0.22);
+  --link-pill-ink: #e2e8f0;
+  --link-pill-hover-bg: #1c2a44;
+  --filter-btn-bg: #182338;
+  --filter-btn-border: rgba(148, 163, 184, 0.22);
+  --filter-btn-ink: #cbd5e1;
+  --muted-bg: #141d30;
+  --chip-bg: rgba(148, 163, 184, 0.1);
+  --heading-ink: #f1f5f9;
+  --name-ink: #f8fafc;
+  --name-cn-ink: var(--ink-600);
+  --intro-ink: var(--ink-700);
+  --photo-caption-ink: #94a3b8;
+
+  --amber: #eab308;
+
+  --accent-border: rgba(96, 165, 250, 0.45);
+  --accent-border-strong: rgba(96, 165, 250, 0.5);
+  --accent-link-line: rgba(96, 165, 250, 0.35);
+  --accent-shadow: rgba(96, 165, 250, 0.18);
+  --lift-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  --pill-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --pill-muted-bg: rgba(148, 163, 184, 0.12);
+
+  --hero-bg: linear-gradient(180deg, #16203a 0%, #121a2b 100%);
+  --hero-inset: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+  --hero-shadow: var(--hero-inset), var(--shadow-sm), var(--shadow-md);
+
+  --photo-ring: rgba(148, 163, 184, 0.18);
+  --photo-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  --photo-ring-hover: rgba(96, 165, 250, 0.36);
+  --photo-shadow-hover: 0 14px 34px rgba(0, 0, 0, 0.65);
+
+  --deco-fill: rgba(96, 165, 250, 0.22);
+  --news-fade-from: rgba(18, 26, 43, 0);
+
+  --paper-title: #f8fafc;
+  --paper-authors: #cbd5e1;
+  --paper-authors-strong: #f8fafc;
+  --paper-body: #e2e8f0;
+  --paper-abstract: #e2e8f0;
+  --paper-img-border: rgba(148, 163, 184, 0.22);
+  --paper-img-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --tag-shadow: none;
+
+  --badge-ink: #fde68a;
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(250, 204, 21, 0.18) 0%,
+    rgba(217, 119, 6, 0.22) 100%
+  );
+  --badge-border: rgba(250, 204, 21, 0.35);
+  --badge-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --selected-row-bg: linear-gradient(
+    125deg,
+    rgba(250, 204, 21, 0.1) 0%,
+    rgba(250, 204, 21, 0.06) 40%,
+    rgba(250, 204, 21, 0.04) 100%
+  );
+  --selected-row-ring: inset 0 0 0 1px rgba(250, 204, 21, 0.18);
+
+  --award-year-bg: rgba(148, 163, 184, 0.15);
+}

@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Base — document, links, layout container, card shell, section headings
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(
+      1100px 420px at 18% -80px,
+      var(--accent-soft) 0%,
+      var(--accent-soft-fade) 60%
+    ),
+    radial-gradient(
+      900px 380px at 92% 120px,
+      var(--accent-warm-soft) 0%,
+      var(--accent-warm-soft-fade) 60%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--ink-body);
+  padding: 12px 14px 32px;
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
+.site-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Card shell + section heading */
+.site-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm), var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.site-section-body {
+  padding: 20px;
+}
+
+.site-section-head {
+  padding: 20px;
+  background: linear-gradient(
+    180deg,
+    var(--card-head-start) 0%,
+    var(--card-head-end) 55%
+  );
+  border-bottom: 1px solid var(--card-separator);
+}
+
+.section-heading {
+  font-family: Lato, Verdana, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--heading-ink);
+  padding-left: 16px;
+  margin: 0 0 0 -20px;
+  border-left: 4px solid var(--accent);
+  line-height: 1.25;
+}
+
+.site-section-body .section-heading {
+  margin-bottom: 18px;
+}
+
+.site-section p {
+  line-height: 1.68;
+  color: var(--ink-body);
+}
+.site-section ul {
+  margin: 0.4em 0 0.5em;
+  padding-left: 1.35em;
+}
+.site-section li {
+  margin-bottom: 0.55em;
+  line-height: 1.62;
+  color: var(--ink-body);
+}
+.site-section li::marker {
+  color: var(--accent);
+}
+
+/* Prose links inside sections */
+.prose-link,
+.profile-intro a,
+.news-body a {
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid var(--accent-link-line);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.prose-link:hover,
+.prose-link:focus,
+.profile-intro a:hover,
+.profile-intro a:focus,
+.news-body a:hover,
+.news-body a:focus {
+  color: color-mix(in srgb, var(--accent) 72%, var(--ink-900));
+  border-bottom-color: color-mix(in srgb, var(--accent) 72%, var(--ink-900));
+}

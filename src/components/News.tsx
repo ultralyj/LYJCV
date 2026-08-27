@@ -22,14 +22,14 @@ export function News({ items }: NewsProps) {
   return (
     <Section id="news" title="News">
       <div
-        className="news-deco"
+        className="section-deco"
         aria-hidden="true"
         style={{
           WebkitMaskImage: `url(${robotUrl})`,
           maskImage: `url(${robotUrl})`,
         }}
       />
-      <div className="news-content">
+      <div className="section-deco-content">
       <ul
         className="news-list"
         data-collapsed={hasMore && !expanded ? 'true' : 'false'}

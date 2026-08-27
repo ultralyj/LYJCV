@@ -11,14 +11,14 @@ export function Services({ groups }: ServicesProps) {
   return (
     <Section id="services" title="Academic Services">
       <div
-        className="news-deco"
+        className="section-deco"
         aria-hidden="true"
         style={{
           WebkitMaskImage: `url(${robotUrl})`,
           maskImage: `url(${robotUrl})`,
         }}
       />
-      <div className="news-content">
+      <div className="section-deco-content">
       <div className="space-y-4">
         {groups.map((group) => (
           <div key={group.heading}>
