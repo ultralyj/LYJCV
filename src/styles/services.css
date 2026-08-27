@@ -1,18 +1,20 @@
 /* ==========================================================================
-   Services / Talks lists
+   Services list
    ========================================================================== */
-.services-list,
-.talks-list {
+.services-heading {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-700);
+}
+.services-list {
   margin: 0.2em 0 0;
   padding-left: 1.35em;
 }
-.services-list li,
-.talks-list li {
+.services-list li {
   margin-bottom: 0.5em;
   line-height: 1.62;
   color: var(--ink-body);
-}
-.talk-date {
-  font-weight: 700;
-  color: var(--ink-800);
 }

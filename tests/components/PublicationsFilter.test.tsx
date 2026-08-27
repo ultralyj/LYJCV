@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import { PublicationsFilter } from './PublicationsFilter';
-import type { TagCategory } from '../types';
+import { PublicationsFilter } from '../../src/components/PublicationsFilter';
+import type { TagCategory } from '../../src/types';
 
 const buttons: { label: string; value: string; count: number; category?: TagCategory | 'selected' }[] = [
   { label: 'All', value: 'all', count: 3 },

@@ -7,10 +7,12 @@ export const services: ServiceGroup[] = [
   },
   {
     heading: 'Journal Reviewing',
-    items: ['IEEE/ASME Transactions on Mechatronics',
-        'IEEE Transactions on Industrial Electronics',
-         'IEEE Transactions on Instrumentation and Measurement',
-          'IEEE Robotics and Automation Letters',
-           'IEEE Sensors Journal'],
+    items: [
+      'IEEE/ASME Transactions on Mechatronics',
+      'IEEE Transactions on Industrial Electronics',
+      'IEEE Transactions on Instrumentation and Measurement',
+      'IEEE Robotics and Automation Letters',
+      'IEEE Sensors Journal',
+    ],
   },
 ];

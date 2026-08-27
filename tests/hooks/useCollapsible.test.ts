@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useCollapsible } from './useCollapsible';
+import { useCollapsible } from '../../src/hooks/useCollapsible';
 
 describe('useCollapsible', () => {
   it('starts collapsed and reports hidden count', () => {

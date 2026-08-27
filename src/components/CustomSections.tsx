@@ -37,14 +37,13 @@ function CardLayout({ items }: { items: CustomSection['items'] }) {
                 className="mb-2 h-28 w-full rounded object-cover"
               />
             )}
-            {item.title && <div className="font-semibold">{item.title}</div>}
+            {item.title && <div className="custom-card-title">{item.title}</div>}
             {item.description && (
-              <div className="text-sm text-slate-600 dark:text-slate-300">{item.description}</div>
+              <div className="custom-card-desc">{item.description}</div>
             )}
           </>
         );
-        const cls =
-          'block rounded border border-slate-200 p-3 hover:shadow-sm dark:border-slate-700';
+        const cls = 'custom-card';
         return item.href ? (
           <a
             key={i}
@@ -67,7 +66,7 @@ function CardLayout({ items }: { items: CustomSection['items'] }) {
 
 function ListLayout({ items }: { items: CustomSection['items'] }) {
   return (
-    <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">
+    <ul className="custom-list">
       {items.map((item, i) => {
         const isExternal = item.href?.startsWith('http');
         const linkProps = item.href
@@ -80,7 +79,7 @@ function ListLayout({ items }: { items: CustomSection['items'] }) {
         let titleNode: ReactNode = null;
         if (item.title) {
           titleNode = linkProps ? (
-            <a {...linkProps} className="font-medium text-accent hover:underline dark:text-accent-dark">
+            <a {...linkProps} className="prose-link">
               {item.title}
             </a>
           ) : (
@@ -91,7 +90,7 @@ function ListLayout({ items }: { items: CustomSection['items'] }) {
         if (item.description) {
           descriptionNode =
             !item.title && linkProps ? (
-              <a {...linkProps} className="text-accent hover:underline dark:text-accent-dark">
+              <a {...linkProps} className="prose-link">
                 {item.description}
               </a>
             ) : (

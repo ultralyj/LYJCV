@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { PublicationCard } from './PublicationCard';
-import type { Publication } from '../types';
+import { PublicationCard } from '../../src/components/PublicationCard';
+import type { Publication } from '../../src/types';
 
 const base: Publication = {
   title: 'A Tactile Paper',

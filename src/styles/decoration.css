@@ -1,5 +1,8 @@
 /* ==========================================================================
-   Section decoration — masked robot watermark shared by News + Services
+   Section decoration — masked robot watermarks.
+   Default (.section-deco) is the tall robot.svg in the bottom-right, used by
+   Academic Services. News uses .section-deco--news: the wide robot2.svg in
+   the top-right.
    ========================================================================== */
 #news .site-section-body,
 #services .site-section-body {
@@ -25,10 +28,22 @@
   pointer-events: none;
   z-index: 0;
 }
+/* News: wide robot2.svg anchored to the top-right corner */
+.section-deco--news {
+  top: 8px;
+  right: 10px;
+  bottom: auto;
+  width: 380px;
+  height: 191px;
+}
 @media (max-width: 640px) {
   .section-deco {
     width: 130px;
     height: 200px;
     opacity: 0.6;
+  }
+  .section-deco--news {
+    width: 230px;
+    height: 116px;
   }
 }

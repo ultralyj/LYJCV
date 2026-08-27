@@ -7,22 +7,21 @@ interface NewsProps {
   items: NewsItem[];
 }
 
-const INITIAL_VISIBLE = 5;
+const INITIAL_VISIBLE = 3;
 
 export function News({ items }: NewsProps) {
-  const { expanded, visibleCount, toggle } = useCollapsible(
+  const { expanded, toggle } = useCollapsible(
     items.length,
     INITIAL_VISIBLE,
   );
-  const visible = items.slice(0, visibleCount);
   const hasMore = items.length > INITIAL_VISIBLE;
 
-  const robotUrl = withBase('/robot.svg');
+  const robotUrl = withBase('/robot2.svg');
 
   return (
     <Section id="news" title="News">
       <div
-        className="section-deco"
+        className="section-deco section-deco--news"
         aria-hidden="true"
         style={{
           WebkitMaskImage: `url(${robotUrl})`,
@@ -34,25 +33,36 @@ export function News({ items }: NewsProps) {
         className="news-list"
         data-collapsed={hasMore && !expanded ? 'true' : 'false'}
       >
-        {visible.map((item, i) => {
-          const isLastVisible = hasMore && !expanded && i === visible.length - 1;
+        {items.map((item, i) => {
+          // All items stay in the DOM so the expand/collapse can animate via
+          // CSS; collapsed ones are flattened to 0 height and removed from the
+          // a11y tree (aria-hidden + inert).
+          const collapsed = hasMore && !expanded && i >= INITIAL_VISIBLE;
+          const isLastVisible =
+            hasMore && !expanded && i === INITIAL_VISIBLE - 1;
           return (
             <li
               key={`${item.date}-${i}`}
+              ref={(el) => {
+                if (el) el.inert = collapsed;
+              }}
+              aria-hidden={collapsed || undefined}
               className={[
-                hasMore && !expanded && i >= INITIAL_VISIBLE
-                  ? 'is-news-collapsed'
-                  : '',
+                collapsed ? 'is-news-collapsed' : '',
                 isLastVisible ? 'is-news-last-visible' : '',
               ]
                 .filter(Boolean)
                 .join(' ')}
             >
-              <span className="news-date">{item.date}</span>
-              <span
-                className="news-body"
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              />
+              <div className="news-item-inner">
+                <div className="news-item-content">
+                  <span className="news-date">{item.date}</span>
+                  <span
+                    className="news-body"
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  />
+                </div>
+              </div>
             </li>
           );
         })}
@@ -65,7 +75,7 @@ export function News({ items }: NewsProps) {
           onClick={toggle}
         >
           <span className="news-toggle-label">
-            {expanded ? 'Show less' : 'Show earlier news'}
+            {expanded ? 'Show less' : 'Show more'}
           </span>
           <svg
             className="news-toggle-chevron"

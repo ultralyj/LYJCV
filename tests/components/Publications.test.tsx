@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { Publications } from './Publications';
-import { publications } from '../data/publications';
+import { Publications } from '../../src/components/Publications';
+import { publications } from '../../src/data/publications';
 
 describe('Publications', () => {
   it('renders the heading with total count, legend and all papers', () => {

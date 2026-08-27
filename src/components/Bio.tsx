@@ -15,10 +15,13 @@ export function Bio({ profile }: BioProps) {
             <span className="name-en">{profile.nameEn}</span>{' '}
             <span className="name-cn">{profile.nameZh}</span>
           </h1>
-          <p
-            className="profile-intro"
-            dangerouslySetInnerHTML={{ __html: profile.bio }}
-          />
+          {profile.bio.split(/<br\s*\/?>/i).map((para, i) => (
+            <p
+              key={i}
+              className="profile-intro"
+              dangerouslySetInnerHTML={{ __html: para }}
+            />
+          ))}
         </div>
         <ProfilePhoto photos={profile.photos} alt={profile.nameEn} />
       </div>

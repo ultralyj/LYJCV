@@ -11,6 +11,8 @@ import './styles/news.css';
 import './styles/publications.css';
 import './styles/services.css';
 import './styles/awards.css';
+import './styles/notes.css';
+import './styles/custom-sections.css';
 import './styles/footer.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

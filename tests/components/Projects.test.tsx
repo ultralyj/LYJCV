@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Projects } from './Projects';
-import { projects } from '../data/projects';
+import { Projects } from '../../src/components/Projects';
+import { projects } from '../../src/data/projects';
 
 describe('Projects', () => {
   it('renders all projects inside a card', () => {

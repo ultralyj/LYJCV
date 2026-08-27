@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { CustomSections } from './CustomSections';
-import type { CustomSection } from '../types';
+import { CustomSections } from '../../src/components/CustomSections';
+import type { CustomSection } from '../../src/types';
 
 const sections: CustomSection[] = [
   {

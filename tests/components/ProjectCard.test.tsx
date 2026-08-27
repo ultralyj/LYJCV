@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { ProjectCard } from './ProjectCard';
-import { withBase } from '../utils/asset';
-import type { Project } from '../types';
+import { ProjectCard } from '../../src/components/ProjectCard';
+import { withBase } from '../../src/utils/asset';
+import type { Project } from '../../src/types';
 
 const project: Project = {
   title: 'Example Project One',

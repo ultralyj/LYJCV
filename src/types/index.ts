@@ -1,6 +1,7 @@
 export type ContactType =
   | 'email'
   | 'scholar'
+  | 'orcid'
   | 'github'
   | 'twitter'
   | 'wechat'
@@ -116,14 +117,6 @@ export interface Project {
 export interface ServiceGroup {
   heading: string;
   items: string[];
-}
-
-export interface Talk {
-  date: string;
-  title: string;
-  host: string;
-  hostUrl?: string;
-  replay?: string;
 }
 
 export interface NoteLink {

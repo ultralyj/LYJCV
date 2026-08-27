@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { ContactIcons } from './ContactIcons';
-import { withBase } from '../utils/asset';
-import type { ContactLink } from '../types';
+import { ContactIcons } from '../../src/components/ContactIcons';
+import { withBase } from '../../src/utils/asset';
+import type { ContactLink } from '../../src/types';
 
 const contacts: ContactLink[] = [
   { type: 'email', label: 'Email', href: 'you@example.com' },

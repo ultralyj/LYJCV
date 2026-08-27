@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Custom sections — data-driven cards / list / paragraph layouts
+   ========================================================================== */
+.custom-card {
+  display: block;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: box-shadow 0.15s ease;
+}
+a.custom-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+.custom-card-title {
+  font-weight: 600;
+  color: var(--ink-800);
+}
+.custom-card-desc {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--ink-600);
+}
+.custom-list {
+  margin: 0.2em 0 0;
+  padding-left: 1.35em;
+  list-style: disc;
+  font-size: 14px;
+  color: var(--ink-body);
+}
+.custom-list li {
+  margin-bottom: 0.25em;
+  line-height: 1.62;
+}

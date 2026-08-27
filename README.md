@@ -27,11 +27,11 @@ All content lives in `src/data/`:
 - `publications.ts` — publications (tags and the ★ Selected filter are derived automatically)
 - `projects.ts` — selected projects
 - `services.ts` — academic service groups
-- `talks.ts` — invited talks
-- `notes.ts` — course notes links
+- `awards.ts` — awards and honors
+- `notes.ts` — miscellaneous links shown under the Others section
 - `customSections.ts` — register your own sections here
 
-Place images under `public/images/` and reference them as `/images/...` (for example `/images/papers/tactile.jpg`). Put your CV at `public/cv.pdf`.
+Place images under `public/images/` and reference them as `/images/...` (for example `/images/papers/tactile.jpg`). Put your CV in `public/` and link it from `profile.ts` (currently `cv_260827.pdf`).
 
 ## Add a custom section
 
@@ -48,7 +48,7 @@ export const customSections: CustomSection[] = [
 ];
 ```
 
-The section renders automatically and an anchor link appears in the navbar.
+The section renders automatically with an `id` anchor (for example `#hobbies`).
 
 ## Theme
 

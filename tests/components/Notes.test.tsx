@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Notes } from './Notes';
+import { Notes } from '../../src/components/Notes';
 
 describe('Notes', () => {
   it('renders note links', () => {
@@ -11,7 +11,7 @@ describe('Notes', () => {
         ]}
       />,
     );
-    expect(screen.getByRole('heading', { name: 'Course Notes' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Others' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Robot Learning Notes' })).toHaveAttribute(
       'href',
       'https://n1',

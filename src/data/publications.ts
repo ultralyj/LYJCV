@@ -7,7 +7,7 @@ export const publications: Publication[] = [
       { name: 'Yijie Luo', isOwn: true, equalContrib: true },
       { name: 'Guanghui Qin', equalContrib: true },
       { name: 'Wei Wang' },
-      { name: 'xingyu Li' },
+      { name: 'Xingyu Li' },
       { name: 'Zhipeng Wang' },
       { name: 'Yanmin Zhou', corresponding: true},
       { name: 'Bin He' },

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../src/hooks/useTheme';
 
 describe('useTheme', () => {
   it('defaults to light and sets no data-theme attribute when light', () => {

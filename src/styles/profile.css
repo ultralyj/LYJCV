@@ -19,7 +19,7 @@
   min-width: 0;
 }
 .profile-photo-col {
-  width: 36%;
+  width: 32%;
   text-align: center;
   padding: 34px 32px 24px 8px;
   align-self: flex-start;
@@ -50,6 +50,11 @@
   color: var(--intro-ink);
   margin: 10px 0 6px;
 }
+/* The bio is split into one <p> per paragraph (Bio.tsx splits on <br/>);
+   this margin controls the gap between the two paragraphs. */
+.profile-intro + .profile-intro {
+  margin-top: 0.7em;
+}
 .profile-links-cell {
   border-top: 1px solid var(--card-separator);
   padding: 4px 28px 22px;
@@ -77,14 +82,14 @@
 .profile-photo-button {
   display: block;
   width: 100%;
-  max-width: 256px;
+  max-width: 224px;
   margin: 0 auto;
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--photo-ring), var(--photo-shadow);
@@ -133,7 +138,7 @@
   font-style: italic;
   letter-spacing: 0.01em;
   margin: 10px auto 0;
-  max-width: 256px;
+  max-width: 224px;
   transition: opacity 0.22s ease;
 }
 .profile-caption.is-caption-swapping {
@@ -223,6 +228,11 @@
   -webkit-mask-image: var(--icon);
   mask-image: var(--icon);
 }
+.profile-link-orcid::before {
+  --icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z'/></svg>");
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+}
 .profile-link-github::before {
   --icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.07 0 0 .97-.31 3.17 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.17-1.18 3.17-1.18.62 1.6.23 2.78.11 3.07.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.25 5.69.41.35.78 1.04.78 2.1v3.11c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z'/></svg>");
   -webkit-mask-image: var(--icon);
@@ -247,6 +257,24 @@
   --icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
   -webkit-mask-image: var(--icon);
   mask-image: var(--icon);
+}
+
+/* Modal */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-500);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.modal-close:hover,
+.modal-close:focus-visible {
+  color: var(--ink-900);
 }
 
 /* Email modal */
@@ -298,4 +326,12 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--accent);
+}
+
+/* WeChat modal */
+.wechat-modal-hint {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-600);
 }

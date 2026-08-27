@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Awards } from './Awards';
+import { Awards } from '../../src/components/Awards';
 
 describe('Awards', () => {
   it('renders prize, competition, and year for each award', () => {

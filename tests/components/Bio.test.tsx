@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Bio } from './Bio';
-import { profile } from '../data/profile';
+import { Bio } from '../../src/components/Bio';
+import { profile } from '../../src/data/profile';
 
 describe('Bio', () => {
   it('renders the hero with name, intro, photo and contacts', () => {

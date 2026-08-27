@@ -1,8 +1,8 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { ProfilePhoto } from './ProfilePhoto';
-import { withBase } from '../utils/asset';
-import type { ProfilePhoto as ProfilePhotoType } from '../types';
+import { ProfilePhoto } from '../../src/components/ProfilePhoto';
+import { withBase } from '../../src/utils/asset';
+import type { ProfilePhoto as ProfilePhotoType } from '../../src/types';
 
 const photos: ProfilePhotoType[] = [
   { src: '/a.jpg', caption: 'First photo' },

@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Others / notes list
+   ========================================================================== */
+.notes-list {
+  margin: 0.2em 0 0;
+  padding-left: 1.35em;
+  list-style: disc;
+  font-size: 14px;
+  color: var(--ink-body);
+}
+.notes-list li {
+  margin-bottom: 0.25em;
+  line-height: 1.62;
+}

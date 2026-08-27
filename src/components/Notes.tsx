@@ -7,8 +7,8 @@ interface NotesProps {
 
 export function Notes({ notes }: NotesProps) {
   return (
-    <Section id="notes" title="Course Notes">
-      <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">
+    <Section id="notes" title="Others">
+      <ul className="notes-list">
         {notes.map((note) => (
           <li key={note.href}>
             <a

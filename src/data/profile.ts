@@ -5,16 +5,16 @@ export const profile: Profile = {
   nameZh: '罗翊杰',
   photos: [
     {
-      src: '/images/profile/lyj2.jpg',
-      caption: 'haimati <br/> Shanghai, 2024',
+      src: '/images/profile/lyj4.jpg',
+      caption: 'Credit to LLQ <br/> Hangzhou, 2026',
     },
     {
       src: '/images/profile/lyj3.gif',
-      caption: 'Photo in the Lab <br/> Filmed in the video for the National Scholarship',
+      caption: 'Photo in the Lab, 2025 <br/> Filmed in the video for the NSP',
     },
     {
       src: '/images/profile/lyj1.jpg',
-      caption: 'Credit to LLQ <br/> Hangzhou, 2025',
+      caption: 'Credit to LLQ <br/> Shanghai, 2024',
     }
   ],
   bio: 'I am a PhD student in Intelligent Science and Technology (IST) at <a href="https://srias.tongji.edu.cn/" target="_blank" rel="noopener noreferrer">Shanghai Research Institute for Intelligent Autonomous Systems (SRIAS)</a>, <a href="https://www.tongji.edu.cn" target="_blank" rel="noopener noreferrer">Tongji University</a>, advised by Prof. <a href="https://robot.tongji.edu.cn/info/1256/2083.htm" target="_blank" rel="noopener noreferrer">Bin He</a> and Prof. <a href="https://robot.tongji.edu.cn/info/1256/2085.htm" target="_blank" rel="noopener noreferrer">Yanmin Zhou</a>. I earned my BE degree in Automation from Tongji in 2023 and transferred to the PhD program after one year of ME&#39;s study in Control Science and Engineering. I expect to graduate in 2028. <br/> My research focuses on robotic manipulation and tactile perception. I enjoy tinkering with geeky projects, such as mini PCs and DIY cameras. I also love cooking, and of course, eating what I make~',
@@ -30,7 +30,7 @@ export const profile: Profile = {
     },
 
     {
-      type: 'scholar',
+      type: 'orcid',
       label: 'ORCID',
       href: 'https://orcid.org/0009-0002-5776-3562',
     },
@@ -41,6 +41,6 @@ export const profile: Profile = {
       href: '#',
       qrcode: '/images/qrcode/wechat.png',
     },
-    { type: 'cv', label: 'CV (coming soon)', href: '/cv.pdf' },
+    { type: 'cv', label: 'CV (chs.)', href: '/cv_260827.pdf' },
   ],
 };

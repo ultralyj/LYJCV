@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Section } from './Section';
+import { Section } from '../../src/components/Section';
 
 describe('Section', () => {
   it('renders a card with a left-accent heading and body', () => {

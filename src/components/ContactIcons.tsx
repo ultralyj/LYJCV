@@ -134,9 +134,7 @@ export function ContactIcons({ contacts }: ContactIconsProps) {
             className="mx-auto h-96 w-96 max-w-full rounded object-contain"
           />
         )}
-        <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-300">
-          Scan to add me on WeChat
-        </p>
+        <p className="wechat-modal-hint">Scan to add me on WeChat</p>
       </Modal>
     </div>
   );

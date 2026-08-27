@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import { ThemeToggle } from './ThemeToggle';
+import { ThemeToggle } from '../../src/components/ThemeToggle';
 
 describe('ThemeToggle', () => {
   it('renders a fixed toggle button with an accessible label', () => {
