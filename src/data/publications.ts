@@ -20,7 +20,7 @@ export const publications: Publication[] = [
     selected: true,
     thumbnail: '/images/papers/coflex-vtla.png',
     links: [
-      { kind: 'paper', href: 'https://example.com/paper1' },
+      { kind: 'paper', href: '/coflex.pdf' },
       { kind: 'project', href: 'https://ultralyj.github.io/CoFlexVTLA' },
     ],
     note: 'code coming soon',
@@ -47,7 +47,7 @@ export const publications: Publication[] = [
     thumbnail: '/images/papers/tacmagpie.png',
     selected: true,
     links: [
-      { kind: 'paper', href: 'https://example.com/paper2' },
+      { kind: 'paper', href: '/IROS26_0521_FI.pdf' },
       { kind: 'code', href: 'https://github.com/ultralyj/TacMagPie' },
     ],
     abstract:
